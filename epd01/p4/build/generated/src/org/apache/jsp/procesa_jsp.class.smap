@@ -1,0 +1,18 @@
+SMAP
+procesa_jsp.java
+JSP
+*S JSP
+*F
++ 0 procesa.jsp
+procesa.jsp
++ 1 footer.jsp
+footer.jsp
+*L
+5,44:49
+48,9:93
+56,2:102
+58,37:105
+94,3:142
+5#1,16:145
+96#0,4:160
+*E

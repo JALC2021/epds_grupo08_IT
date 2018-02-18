@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>p4-epd1</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+    </head>
+    <body>
+
+        <!--        Vista de formulario-->
+        <p>Este formulario se utilizar&aacute; para saber si usted es apto para recibir un cr&eacute;dito</p>
+        <p>Rellene el siguiente el formulario:</p>
+        <form action="procesa.jsp" method="post">
+
+            <p> <label>Nombre (*): </label><input type="text" name="nombre"> </p>
+
+            <p><label>Apellidos (*): </label><input type="text" name="apellidos"> </p>
+
+            <p><label>Estado civil (*): </label><select name="estadoCivil">
+                    <option value="-">Seleccione su estado</option>
+                    <option value="soltero">Soltero</option>
+                    <option value="casado">Casado</option>
+                    <option value="otros">Otros</option>
+                </select></p>
+
+            <p><label>¿Trabaja? (*): </label><label>S&iacute;</label><input type="radio" name="trabaja" value="si">
+                <label>No</label><input type="radio" name="trabaja" value="no"></p>
+
+            <p><label>Ingresos (*): </label><input type="text" name="ingresos"></p>
+
+            <p><label>Gastos (*): </label><input type="text" name="gastos"></p>
+            <input type="submit" value="Enviar"><br /><br />
+            <span class="obligatorio">(*) Todos los campos son obligatorios</span>
+        </form>
+
+        <footer>
+            <p>Grupo&nbsp;08&nbsp;IT</p>
+            <p>Juan Antonio L&oacute;pez Cano, Susana de la Calle Iglesias, Pablo Parejo Fern&aacute;ndez</p>
+        </footer>
+    </body>
+</html>

@@ -6,7 +6,7 @@
         <title>P1_epd1</title>
     </head>
     <body>
-        <h1>Datos recibidos</h1>
+        <h1><strong>Datos recibidos</strong></h1>
         <%
             String nombre = (String) request.getParameter("nombre");
             String apellidos = (String) request.getParameter("apellidos");
@@ -31,6 +31,6 @@
         <%
             }
         %>
-
+        <%@include file="footer.jsp" %>
     </body>
 </html>

@@ -4,7 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
-        <title>P1_epd1</title>
+        <title>P3_epd1</title>
     </head>
     <body>
         <h1><strong>Datos recibidos</strong></h1>

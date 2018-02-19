@@ -19,13 +19,13 @@ and open the template in the editor.
         </header>
         <div class="container">
             
-            <form action="recogidaDatos.jsp">
+            <form action="recogidaDatos.jsp" method="post">
                 <div class="row">
                     <div class="col-25">
                         <label>Nombre</label>
                     </div>
                     <div class="col-75">
-                        <input type="text"  name="nombre" placeholder="Introduzca su nombre..">
+                        <input type="text"  name="nombre" placeholder="Introduzca su nombre.." required>
                     </div>
                 </div>
                 <div class="row">
@@ -33,7 +33,7 @@ and open the template in the editor.
                         <label>Apellidos</label>
                     </div>
                     <div class="col-75">
-                        <input type="text"  name="apellidos" placeholder="Introduzca sus apellidos..">
+                        <input type="text"  name="apellidos" placeholder="Introduzca sus apellidos.." required>
                     </div>
                 </div>
                 <div class="row">
@@ -41,7 +41,7 @@ and open the template in the editor.
                         <label>Email</label>
                     </div>
                     <div class="col-75">
-                        <input type="email" name="email" placeholder="nombre@gmail.com ..">
+                        <input type="email" name="email" placeholder="nombre@gmail.com .." required>
                     </div>
                 </div>
                 <div class="row">
@@ -73,10 +73,10 @@ and open the template in the editor.
                 </script>
                 <div id="siEstudio" class="row" style="display: none;">
                     <div class="col-25">
-                        <label for="country">Indique el Bloque o los bloques que encontr&oacute; m&aacute;s dif&iacute;ciles. Puede seleccionar varios bloques dejando presionado el bot&oacute;n Ctrl mientras selecciona los bloques</label>
+                        <label>Indique el Bloque o los bloques que encontr&oacute; m&aacute;s dif&iacute;ciles. Puede seleccionar varios bloques dejando presionado el bot&oacute;n ctrl &oacute; cmd mientras selecciona los bloques.</label>
                     </div>
                     <div class="col-75">
-                        <select id="siEstudio" name="bloque" multiple>
+                        <select id="siEstudio" name="bloque" multiple required>
                             <option value="Jsp">Jsp</option>
                             <option value="Struts">Struts</option>
                             <option value="Hibernate">Hibernate</option>
@@ -88,7 +88,7 @@ and open the template in the editor.
                         <label>Nota que espera obtener</label>
                     </div>
                     <div class="col-75">
-                        <input type="number" name="nota" min="0" max="10">
+                        <input type="number" name="nota" min="0" max="10" required>
                     </div>
                 </div>
                 <div class="row">

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>ej2-epd2</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <link rel="stylesheet" type="text/css" href="estilo.css">
+    </head>
+    <body>
+        <h1>Elija la página de referencia a objetos impl&iacute;citos que desee visualizar:</h1>
+        <form action="procesa.jsp" method="post">
+            <p><label>Seleccione una opci&oacute;n (*): </label><select name="opcion" required>
+                    
+                    <option></option>
+                    <option value="request">request</option>
+                    <option value="out">out</option>
+                    <option value="response">response</option>
+                    <option value="config">config</option>
+                    <option value="application">application</option>
+                    <option value="session">session</option>
+
+                </select></p>
+            <p> <input type="submit" value="Enviar"></p>
+            <span>(*) Campo obligatorio</span>
+        </form>
+    </body>
+</html>

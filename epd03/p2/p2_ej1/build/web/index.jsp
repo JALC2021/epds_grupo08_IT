@@ -1,17 +1,13 @@
-
-
-
-
 <%@page import="java.util.Date"%>
 <%@page import="java.time.LocalTime"%>
 <%@page import="java.time.temporal.ChronoUnit"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import=" aparcamiento.cocheModelo" %>
-<%@page import=" aparcamiento.parkingControlador" %>
+<%@page import=" aparcamiento.CocheModelo" %>
+<%@page import=" aparcamiento.DatosParking" %>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.List"%>
-<%! List<cocheModelo> cochesAparcados = parkingControlador.cochesZonaAzul();%>
+<%! List<CocheModelo> cochesAparcados = DatosParking.cochesZonaAzul();%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -67,7 +63,7 @@
                     <th>Tiempo permitido</th>
                 </tr>
                 <%
-                    for (cocheModelo cm : cochesAparcados) {
+                    for (CocheModelo cm : cochesAparcados) {
                         //Matricula
                         String matricula = cm.getMatricula();
                         //Modelo
@@ -123,7 +119,7 @@
                     <th>Tiempo permitido</th>
                 </tr>
                 <%
-                    for (cocheModelo cm : cochesAparcados) {
+                    for (CocheModelo cm : cochesAparcados) {
                         //Matricula
                         String matricula = cm.getMatricula();
                         //Modelo

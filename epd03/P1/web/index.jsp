@@ -113,7 +113,8 @@
 <%
     /*Controlador*/
     List<cocheModelo> listaCoches = new ArrayList<cocheModelo>();
-
+    
+    /*Datos parking*/
     //Coche1
     cocheModelo coche1 = new cocheModelo();
 

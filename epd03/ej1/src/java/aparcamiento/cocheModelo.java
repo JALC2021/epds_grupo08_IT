@@ -8,7 +8,7 @@ package aparcamiento;
 import java.util.Calendar;
 import java.util.Objects;
 
-public class cocheModelo {
+public class CocheModelo {
 
     private String matricula;
     private String modelo;
@@ -16,11 +16,11 @@ public class cocheModelo {
     private Calendar horaSalida;
     private int tiempoPermitido;
 
-    public cocheModelo() {
+    public CocheModelo() {
     }
 
     
-    public cocheModelo(String matricula, String modelo, Calendar horaEntrada, Calendar horaSalida, int tiempoPermitido) {
+    public CocheModelo(String matricula, String modelo, Calendar horaEntrada, Calendar horaSalida, int tiempoPermitido) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.horaEntrada = horaEntrada;
@@ -92,7 +92,7 @@ public class cocheModelo {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final cocheModelo other = (cocheModelo) obj;
+        final CocheModelo other = (CocheModelo) obj;
         if (this.tiempoPermitido != other.tiempoPermitido) {
             return false;
         }

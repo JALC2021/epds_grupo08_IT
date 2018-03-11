@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
-        <title>Epd3_Ej1</title>
+        <title>Epd3_ej1</title>
     </head>
     <body>
         <header><h1>Aparcamiento Zona Azul</h1></header>

@@ -98,10 +98,11 @@
                  <div class="row">
                  <div class="col-25">
                         <label>Buscar coches por matricula</label>
-                    </div>
+                   </div>
                     <div class="col-75">
                         <input type="text" name="matriculaCoche">
                         <input type="submit" name="buscar" value="buscar">
+                        <input type="hidden" name="accion" value="buscar">
                     </div>
                 </div>
                 </form>
@@ -152,6 +153,7 @@
                     <div class="col-75">
                      
                         <input type="submit" name="buscar1" value="buscar">
+                        <input type="hidden" name="accion" value="buscar1">
                     </div>
                 </div>
                 </form>

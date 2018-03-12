@@ -210,7 +210,7 @@
         <header><h1>Aparcamiento Zona Azul</h1></header>
         <div class="container">
 
-            <table>
+            <table border="2">
                 <tr>
                     <th>Matricula</th>
                     <th>Modelo</th>

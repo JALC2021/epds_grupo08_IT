@@ -7,8 +7,8 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
- 
- 
+
+
 <%!
     /*Modelo*/
     public class cocheModelo {
@@ -116,7 +116,7 @@
 <%
     /*Controlador*/
     List<cocheModelo> listaCoches = new ArrayList<cocheModelo>();
-    
+
     //Datos
     //Coche1
     cocheModelo coche1 = new cocheModelo();
@@ -172,7 +172,7 @@
     horaEntradaCoche3.set(Calendar.MINUTE, 45);
 
     coche3.setHoraEntrada(horaEntradaCoche3);
-    
+
     coche3.setTiempoPermitido(90);
 
     listaCoches.add(coche3);
@@ -205,15 +205,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" type="text/css" href="style.css" />
-         <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
         <title>Epd3_p2_p1</title>
     </head>
     <body>
-                    <%--Vista --%>
+        <%--Vista --%>
         <header><h1>Aparcamiento Zona Azul</h1></header>
         <div class="container">
 
-            <table>
+            <table border="2">
                 <tr>
                     <th>Matricula</th>
                     <th>Modelo</th>
@@ -222,8 +222,7 @@
                     <th>Tiempo permitido</th>
                 </tr>
 
-                <%
-                    for (cocheModelo cm : listaCoches) {
+                <%                    for (cocheModelo cm : listaCoches) {
                         //Matricula
                         String matricula = cm.getMatricula();
                         //Modelo
@@ -249,143 +248,146 @@
                 <%}%>
 
             </table>
-              
-                <div class="row">
-                    <div class="col-25">
-                        <label>¿Qu&eacute; vehiculos quieres ver?</label>
-                    </div>
-                    <div class="col-75">
-                        <label class="labelRadio">Vehiculos que exceden el tiempo en zona azul</label><input class="radioEstudio" type="radio" name="estudiadoIt" value="si">
-                        <input class="radioEstudio" type="radio" name="estudiadoIt" value="no"><label class="labelRadio">Vehiculos que no</label>
-                    </div>
+
+            <div class="row">
+                <div class="col-25">
+                    <label>¿Qu&eacute; vehiculos quieres ver?</label>
                 </div>
-        </div>
-             <script type="text/javascript">
+                <div class="col-75">
+                    <label class="labelRadio">Vehiculos que exceden el tiempo en zona azul</label><input class="radioEstudio" type="radio" name="estudiadoIt" value="si">
+                    <input class="radioEstudio" type="radio" name="estudiadoIt" value="no"><label class="labelRadio">Vehiculos que no</label>
+                </div>
+            </div>
 
-                    $(document).ready(function () {
-                        $(".radioEstudio").click(function (evento) {
+            <script type="text/javascript">
 
-                            var valor = $(this).val();
+                $(document).ready(function () {
+                    $(".radioEstudio").click(function (evento) {
 
-                            if (valor === 'si') {
-                                $("#siEstudio").css("display", "block");
-                                $("#noEstudio").css("display", "none");
-                            } else {
-                                $("#siEstudio").css("display", "none");
-                                $("#noEstudio").css("display", "block");
-                            }
-                        });
+                        var valor = $(this).val();
+
+                        if (valor === 'si') {
+                            $("#siEstudio").css("display", "block");
+                            $("#noEstudio").css("display", "none");
+                        } else {
+                            $("#siEstudio").css("display", "none");
+                            $("#noEstudio").css("display", "block");
+                        }
                     });
+                });
 
-                </script>
-                
-                <div id="siEstudio" class="row" style="display: none;">
-                    <table border="2">
-                <tr>
-                    <th>Matricula</th>
-                    <th>Modelo</th>
-                    <th>Hora de entrada</th>
-                    <th>Hora de salida</th>
-                    <th>Tiempo permitido</th>
-                </tr>
-                <%
-                      
-                    for (cocheModelo cm : listaCoches) {
-                        //Matricula
-                        String matricula = cm.getMatricula();
-                        //Modelo
-                        String modelo = cm.getModelo();
-                        //Hora entrada y salida
-                        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-                        Date horaEntrada = cm.getHoraEntrada().getTime();
-                        String HoraEntrada = formatoHora.format(horaEntrada.getTime());
-                        
-                        int diferencia = -1;
-                        String HoraSalida = "";
-                        Calendar horaSalida = cm.getHoraSalida();
-                        
-                        if(horaSalida != null){
-                         Date horaSalida1 = cm.getHoraSalida().getTime();
-                         HoraSalida = formatoHora.format(horaSalida.getTime());
-                          long minutosHoraEntrada = horaEntrada.getTime();
-                        long minutosHoraSalida = horaSalida1.getTime();
-                         diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000*60));
-                       
-                        }else {
-                         HoraSalida =  "--";
-                         diferencia = -1;
-                        }
-                        //Tiempo permitido
-                        int tiempoPermitido = cm.getTiempoPermitido();
-                        String TiempoPermitido = String.valueOf(tiempoPermitido);
-               
-                        if(diferencia > tiempoPermitido){
-                %>
-                <tr>
-                    <td><%=matricula%></td>
-                    <td><%=modelo%></td>
-                    <td><%=HoraEntrada%></td>
-                    <td><%=HoraSalida%></td>
-                    <td><%=TiempoPermitido%></td>
-                </tr>
-                <%}}%>
+            </script>
 
-            </table>
-                </div>
-                <div id="noEstudio" class="row" style="display: none;">
-                     <table border="2">
-                <tr>
-                    <th>Matricula</th>
-                    <th>Modelo</th>
-                    <th>Hora de entrada</th>
-                    <th>Hora de salida</th>
-                    <th>Tiempo permitido</th>
-                </tr>
-                <%
-                    for (cocheModelo cm : listaCoches) {
-                        //Matricula
-                        String matricula = cm.getMatricula();
-                        //Modelo
-                        String modelo = cm.getModelo();
-                        //Hora entrada y salida
+            <div id="siEstudio" class="row" style="display: none;">
+                <table border="2">
+                    <tr>
+                        <th>Matricula</th>
+                        <th>Modelo</th>
+                        <th>Hora de entrada</th>
+                        <th>Hora de salida</th>
+                        <th>Tiempo permitido</th>
+                    </tr>
+                    <%
 
-                        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-                        Date horaEntrada = cm.getHoraEntrada().getTime();
-                        String HoraEntrada = formatoHora.format(horaEntrada.getTime());
-                        
-                        int diferencia = -1;
-                        String HoraSalida = "";
-                        Calendar horaSalida = cm.getHoraSalida();
-                        
-                        if(horaSalida != null){
-                         Date horaSalida1 = cm.getHoraSalida().getTime();
-                         HoraSalida = formatoHora.format(horaSalida.getTime());
-                          long minutosHoraEntrada = horaEntrada.getTime();
-                        long minutosHoraSalida = horaSalida1.getTime();
-                         diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000*60));
-                       
-                        }else {
-                         HoraSalida =  "--";
-                         diferencia = -1;
-                        }
-                        //Tiempo permitido
-                        int tiempoPermitido = cm.getTiempoPermitido();
-                        String TiempoPermitido = String.valueOf(tiempoPermitido);
-               
-                        if(diferencia <= tiempoPermitido){
-                %>
-                <tr>
-                    <td><%=matricula%></td>
-                    <td><%=modelo%></td>
-                    <td><%=HoraEntrada%></td>
-                    <td><%=HoraSalida%></td>
-                    <td><%=TiempoPermitido%></td>
-                </tr>
-                <%}}%>
+                        for (cocheModelo cm : listaCoches) {
+                            //Matricula
+                            String matricula = cm.getMatricula();
+                            //Modelo
+                            String modelo = cm.getModelo();
+                            //Hora entrada y salida
+                            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+                            Date horaEntrada = cm.getHoraEntrada().getTime();
+                            String HoraEntrada = formatoHora.format(horaEntrada.getTime());
 
-            </table>
-                </div>
-                
-      <%@include file="footer.jsp" %>
+                            int diferencia = -1;
+                            String HoraSalida = "";
+                            Calendar horaSalida = cm.getHoraSalida();
+
+                            if (horaSalida != null) {
+                                Date horaSalida1 = cm.getHoraSalida().getTime();
+                                HoraSalida = formatoHora.format(horaSalida.getTime());
+                                long minutosHoraEntrada = horaEntrada.getTime();
+                                long minutosHoraSalida = horaSalida1.getTime();
+                                diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000 * 60));
+
+                            } else {
+                                HoraSalida = "--";
+                                diferencia = -1;
+                            }
+                            //Tiempo permitido
+                            int tiempoPermitido = cm.getTiempoPermitido();
+                            String TiempoPermitido = String.valueOf(tiempoPermitido);
+
+                            if (diferencia > tiempoPermitido) {
+                    %>
+                    <tr>
+                        <td><%=matricula%></td>
+                        <td><%=modelo%></td>
+                        <td><%=HoraEntrada%></td>
+                        <td><%=HoraSalida%></td>
+                        <td><%=TiempoPermitido%></td>
+                    </tr>
+                    <%}
+                    }%>
+
+                </table>
+            </div>
+            <div id="noEstudio" class="row" style="display: none;">
+                <table border="2">
+                    <tr>
+                        <th>Matricula</th>
+                        <th>Modelo</th>
+                        <th>Hora de entrada</th>
+                        <th>Hora de salida</th>
+                        <th>Tiempo permitido</th>
+                    </tr>
+                    <%
+                        for (cocheModelo cm : listaCoches) {
+                            //Matricula
+                            String matricula = cm.getMatricula();
+                            //Modelo
+                            String modelo = cm.getModelo();
+                            //Hora entrada y salida
+
+                            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+                            Date horaEntrada = cm.getHoraEntrada().getTime();
+                            String HoraEntrada = formatoHora.format(horaEntrada.getTime());
+
+                            int diferencia = -1;
+                            String HoraSalida = "";
+                            Calendar horaSalida = cm.getHoraSalida();
+
+                            if (horaSalida != null) {
+                                Date horaSalida1 = cm.getHoraSalida().getTime();
+                                HoraSalida = formatoHora.format(horaSalida.getTime());
+                                long minutosHoraEntrada = horaEntrada.getTime();
+                                long minutosHoraSalida = horaSalida1.getTime();
+                                diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000 * 60));
+
+                            } else {
+                                HoraSalida = "--";
+                                diferencia = -1;
+                            }
+                            //Tiempo permitido
+                            int tiempoPermitido = cm.getTiempoPermitido();
+                            String TiempoPermitido = String.valueOf(tiempoPermitido);
+
+                            if (diferencia <= tiempoPermitido) {
+                    %>
+                    <tr>
+                        <td><%=matricula%></td>
+                        <td><%=modelo%></td>
+                        <td><%=HoraEntrada%></td>
+                        <td><%=HoraSalida%></td>
+                        <td><%=TiempoPermitido%></td>
+                    </tr>
+                    <%}
+                    }%>
+
+                </table>
+            </div>
+        </div>
+
+        <%@include file="footer.jsp" %>
     </body>
 </html>

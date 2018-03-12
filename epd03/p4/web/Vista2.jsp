@@ -94,7 +94,7 @@
                 
                    <% //Busqueda de coches %>
                 
-                <form method="post">
+                <form action="ParkingServlet" method="post">
                  <div class="row">
                  <div class="col-25">
                         <label>Buscar coches por matricula</label>
@@ -145,7 +145,7 @@
                 <% } %>
                 
                 
-                <form method="post">
+                <form action="ParkingServlet" method="post">
                  <div class="row">
                  <div class="col-25">
                         <label>Coches que siguen en el aparcamiento</label>

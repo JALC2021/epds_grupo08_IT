@@ -93,7 +93,7 @@
                         <td><%=TiempoPermitido%></td>
                     </tr>
                     <%}
-            }%>
+                        }%>
 
                 </table>
             </div>
@@ -146,7 +146,7 @@
                         <td><%=TiempoPermitido%></td>
                     </tr>
                     <%}
-            }%>
+                        }%>
 
                 </table>
             </div>
@@ -220,13 +220,13 @@
                     </tr>
 
                     <%}
-            }%>
+                        }%>
 
                 </table>
 
             </div>
             <% }
-    } %>
+                } %>
 
 
             <form method="post">
@@ -294,12 +294,12 @@
                     </tr>
 
                     <%}
-            }%>
+                        }%>
 
                 </table>
 
             </div>
+            <% }%>
         </div>
     </body>
 </html>
-<% }%>

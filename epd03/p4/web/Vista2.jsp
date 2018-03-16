@@ -1,12 +1,12 @@
-<%@page import="Modelo.persistencia.DatosParking"%>
+<%@page import="Controlador.ParkingServlet"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="Modelo.CocheModelo"%>
-<%! List<CocheModelo> cochesAparcados = DatosParking.cochesZonaAzul();%>
-<%! List<CocheModelo> vehiculosExcedenTiempo = DatosParking.vehiculosExceden(true);%>
-<%! List<CocheModelo> vehiculosNoExcedenTiempo = DatosParking.vehiculosExceden(false);%>
+
+
+<% List<CocheModelo> cochesAparcados = (List<CocheModelo>)session.getAttribute("buscar");%>
 
 <!DOCTYPE html>
 <html>

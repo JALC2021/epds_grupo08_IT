@@ -43,38 +43,61 @@ public class ParkingServlet extends HttpServlet {
             if (accion.equalsIgnoreCase("consultarAparcamiento")) {
 
                 session.setAttribute("coches", coches);
-                String url = "/index.jsp";
+                String url = "/verListaCoches.jsp";
 
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
 
-            }// else if (accion.equalsIgnoreCase("buscar")) {
-//                List<CocheModelo> cochesEncontrados = DatosParking.busquedaCoches(request.getParameter("matriculaCoche"));
-//                /*Se modifica la sesión que se ha creado:
-//                Se llama a la sesión con el nombre "buscar" 
-//                A esta sesión se le modifica el atributo, enlazándole la lista de coches a consultar*/
-//
-// /*En este bloque se está reenviando desde el controlador a la vista*/
-//                session.setAttribute("buscar", cochesEncontrados);
-//                /*Se está haciendo un enlace a /index.jsp*/
-//                String url = "/index.jsp";
-//                /*Obtiene el contexto del Servlet*/
-//                ServletContext sc = getServletContext();
-//                /*Se quiere ir a la url /index.jsp*/
-//                RequestDispatcher rd = sc.getRequestDispatcher(url);
-//                /*Reenvio para que la información viaje y esté actualizada con respecto a lo que se hizo en la sesión*/
-//                rd.forward(request, response);
-//
-//            } else if (accion.equalsIgnoreCase("buscar1")) {
-//                List<CocheModelo> cochesAparcados = DatosParking.busquedaCochesAparcados();
-//                session.setAttribute("buscarCochesAparcados", cochesAparcados);
-//                String url = "/index.jsp";
+            }else if(accion.equalsIgnoreCase("excedenTiempo")){
+                String opcion=request.getParameter("excesotiempo");
+                String url = "/tiempoPermitido.jsp"; 
+                if(opcion.equals("si")){
+                    List<CocheModelo> cochesExceden = DatosParking.vehiculosExceden(true);
+                    session.setAttribute("cochesExceden", cochesExceden);
+                    ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+                    
+                }else{
+                    List<CocheModelo> cochesNoExceden = DatosParking.vehiculosExceden(false);
+                    session.setAttribute("cochesNoExceden", cochesNoExceden);
+                    ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+                    
+                }
+
 //                ServletContext sc = getServletContext();
 //                RequestDispatcher rd = sc.getRequestDispatcher(url);
 //                rd.forward(request, response);
-//            
-//            }
+                
+            }else if (accion.equalsIgnoreCase("buscarMatricula")) {
+                List<CocheModelo> cochesEncontrados = DatosParking.busquedaCoches(request.getParameter("matriculaCoche"));
+                /*Se modifica la sesión que se ha creado:
+                Se llama a la sesión con el nombre "buscar" 
+                A esta sesión se le modifica el atributo, enlazándole la lista de coches a consultar*/
+
+ /*En este bloque se está reenviando desde el controlador a la vista*/
+                session.setAttribute("buscarMatricula", cochesEncontrados);
+                /*Se está haciendo un enlace a /index.jsp*/
+                String url = "/busquedaPorMatricula.jsp";
+                /*Obtiene el contexto del Servlet*/
+                ServletContext sc = getServletContext();
+                /*Se quiere ir a la url /index.jsp*/
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                /*Reenvio para que la información viaje y esté actualizada con respecto a lo que se hizo en la sesión*/
+                rd.forward(request, response);
+
+            }else if (accion.equalsIgnoreCase("buscarAparcados")) {
+                List<CocheModelo> cochesAparcados = DatosParking.busquedaCochesAparcados();
+                session.setAttribute("buscarCochesAparcados", cochesAparcados);
+                String url = "/cochesAunAparcados.jsp";
+                ServletContext sc = getServletContext();
+                RequestDispatcher rd = sc.getRequestDispatcher(url);
+                rd.forward(request, response);
+            
+            }
         }
     }
 

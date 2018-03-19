@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.ResultSet"%>
@@ -144,13 +146,39 @@
         CocheModelo vehiculo = new CocheModelo();
                     vehiculo.setMatricula(resultados.getString("matricula"));
                     vehiculo.setModelo(resultados.getString("modelo"));
-                    vehiculo.setHoraEntrada((Calendar)resultados.getObject("hora_entrada"));
-                    vehiculo.setHoraSalida((Calendar)resultados.getObject("hora_salida"));
+                    
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                    
+                    Date hora_entrada = ((Date)resultados.getObject("hora_entrada"));
+                    String hora1 = sdf.format(hora_entrada);
+                    Calendar cal1 = new GregorianCalendar();
+                    cal1.setTime(sdf.parse(hora1));
+                    vehiculo.setHoraEntrada(cal1);
+                    
+                   
+                    
+                    Date hora_salida = ((Date)resultados.getObject("hora_salida"));
+                    
+                    
+                    if (hora_salida != null){
+                    String hora2 = sdf.format(hora_salida);
+                    Calendar cal2 = new GregorianCalendar();
+                    cal2.setTime(sdf.parse(hora2));
+                    vehiculo.setHoraSalida(cal2);
+                    
+                    }else{
+                        vehiculo.setHoraSalida(null);
+                    }
+                    
+                    
+                    
                     vehiculo.setTiempoPermitido(resultados.getInt("tiempo_permitido"));
             listaCoches.add(vehiculo);
       }
 
       conexion.close();
+      solicitud.close();
+      resultados.close();
      
    }
    else

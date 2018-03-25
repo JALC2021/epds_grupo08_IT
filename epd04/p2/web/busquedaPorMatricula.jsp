@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page session="true"%>
+<%@page session="true"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.Date"%>
@@ -7,7 +7,8 @@
 <%@page import="Modelo.CocheModelo"%>
 
 
-<% List<CocheModelo> cochesPorMatricula = (List<CocheModelo>)session.getAttribute("buscarMatricula");%>
+<% List<CocheModelo> cochesPorMatricula = (List<CocheModelo>)request.getAttribute("buscarMatricula");
+//List<CocheModelo> cochesPorMatricula = (List<CocheModelo>)session.getAttribute("buscarMatricula");%>
 
 
 <!DOCTYPE html>

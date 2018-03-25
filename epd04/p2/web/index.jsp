@@ -1,5 +1,15 @@
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="Modelo.CocheModelo"%>
+<%@page import="Modelo.persistencia.DatosParking"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.GregorianCalendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.util.List"%>
+<%
+    List<CocheModelo> cochesAparcados = (List<CocheModelo>) request.getAttribute("coches");
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,18 +20,56 @@
     <body>
         <header><h1>Aparcamiento Zona Azul</h1></header>
         <div class="container">
-            <label>Si desea consultar la ocupaci&oacute;n de la zona az&uacute;l, pulse "Consultar"</label>
+           
+            
 
             <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-            
-            <form name="ocupacionParking" action="ParkingServlet" method="post">
-                <input type="hidden" name="accion" value="consultarAparcamiento">
-                <input type="submit" name="consultarCoches" value="Consultar">
-            </form>
 
 
-            <label>Si desea consultar los veh&iacute;culos que exceden el tiempo o no de la zona az&uacute;l, pulse "Consultar"</label>
+            <table border="2">
+                <tr>
+                    <th>Matricula</th>
+                    <th>Modelo</th>
+                    <th>Hora de entrada</th>
+                    <th>Hora de salida</th>
+                    <th>Tiempo permitido</th>
+                </tr>
+                <%                    try {
+                        if (cochesAparcados.isEmpty()) {
+                            out.write("La lista de los coche esta vacia");
+                        } else {
 
+                            for (CocheModelo cm : cochesAparcados) {
+
+                                //Matricula
+                                String matricula = cm.getMatricula();
+//                        //Modelo
+                                String modelo = cm.getModelo();
+//                        //Hora entrada y salida
+                                Date horaEntrada = cm.getHoraEntrada();
+                                 Date horaSalida = cm.getHoraSalida();
+//                        //Formato fecha
+                                SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+                                String HoraEntrada = formatoHora.format(horaEntrada.getTime());
+                                  String HoraSalida = horaSalida == null ? "--" : formatoHora.format(horaSalida.getTime());
+//                        //Tiempo permitido
+                                int tiempoPermitido = cm.getTiempoPermitido();
+                                String TiempoPermitido = String.valueOf(tiempoPermitido);
+                %>
+                <tr>
+                    <td><%=matricula%></td>
+                    <td><%=modelo%></td>
+                    <td><%=horaEntrada%></td>
+                    <td><%=horaSalida%></td>
+                    <td><%=tiempoPermitido%></td>
+                </tr>
+                <%}
+                        }
+                    } catch (Exception e) {
+                        out.write(e.getMessage());
+                    }%>
+
+            </table>
 
             <div class="row">
 
@@ -31,30 +79,15 @@
                 <div class="col-75">
                     <form name="TiempoPermitido" action="ParkingServlet" method="post">
                         <input type="hidden" name="accion" value="excedenTiempo">
-                        <label class="labelRadio">Vehiculos que exceden el tiempo en zona azul</label><input class="radioEstudio" type="radio" name="excesotiempo" value="si">
-                        <input class="radioEstudio" type="radio" name="excesotiempo" value="no"><label class="labelRadio">Vehiculos que no</label>
+                        <label>Vehiculos que exceden el tiempo en zona azul</label><input type="submit" name="exceden" value="si">
+                    </form>
+                    <form action="ParkingServlet" method="post">
+                        <input type="hidden" name="accion" value="noExcedenTiempo">
+                        <p><label>Vehiculos que no exceden el tiempo en zona azul</label><input type="submit" name="noExceden" value="no"></p>
                     </form>
                 </div>
             </div>
-      <script type="text/javascript">
-
-                $(document).ready(function () {
-                    $(".radioEstudio").click(function (evento) {
-
-                        var valor = $(this).val();
-
-                        if (valor === 'si') {
-                            $("#siEstudio").css("display", "block");
-                            $("#noEstudio").css("display", "none");
-                        } else {
-                            $("#siEstudio").css("display", "none");
-                            $("#noEstudio").css("display", "block");
-                        }
-                    });
-                });
-
-            </script>
-
+           
             <form name="buscarPorMatricula" action="ParkingServlet" method="post">
                 <div class="row">
                     <div class="col-25">

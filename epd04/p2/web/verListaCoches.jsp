@@ -8,7 +8,7 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%
-    List<CocheModelo> cochesAparcados = (List<CocheModelo>) session.getAttribute("coches");
+    List<CocheModelo> cochesAparcados = (List<CocheModelo>) request.getAttribute("coches");
 %>
 
 <!DOCTYPE html>
@@ -43,8 +43,8 @@
 //                        //Modelo
                                 String modelo = cm.getModelo();
 //                        //Hora entrada y salida
-                                Calendar horaEntrada = cm.getHoraEntrada();
-                                Calendar horaSalida = cm.getHoraSalida();
+                               Date horaEntrada = cm.getHoraEntrada();
+                                Date horaSalida = cm.getHoraSalida();
 //                        //Formato fecha
                                 SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
                                 String HoraEntrada = formatoHora.format(horaEntrada.getTime());
@@ -67,7 +67,7 @@
                     }%>
 
             </table>
-            <%//@include file="Vista2.jsp"%> 
+           
 
         </div>
         <%@include file="footer.jsp"%>

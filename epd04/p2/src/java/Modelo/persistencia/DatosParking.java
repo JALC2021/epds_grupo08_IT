@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class DatosParking {
@@ -37,9 +38,10 @@ public class DatosParking {
     public static CocheModelo ResultSetToCoche(ResultSet resultado) throws SQLException {
         CocheModelo vehiculo = new CocheModelo();
         vehiculo.setMatricula(resultado.getString("matricula"));
-        vehiculo.setHoraEntrada((Calendar) resultado.getObject("horaEntrada"));
-        vehiculo.setHoraSalida((Calendar) resultado.getObject("horaSalida"));
-        vehiculo.setTiempoPermitido(Integer.parseInt(resultado.getString("tiempoPermitido")));
+        vehiculo.setModelo(resultado.getString("modelo"));
+        vehiculo.setHoraEntrada((Date) resultado.getObject("hora_entrada"));
+        vehiculo.setHoraSalida((Date) resultado.getObject("hora_salida"));
+        vehiculo.setTiempoPermitido(Integer.parseInt(resultado.getString("tiempo_permitido")));
         return vehiculo;
     }
 
@@ -76,16 +78,16 @@ public class DatosParking {
             CocheModelo cocheExcede = Modelo.persistencia.DatosParking.ResultSetToCoche(resultados);
             //Hora entrada y salida
             SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-            Date horaEntrada = cocheExcede.getHoraEntrada().getTime();
+            Date horaEntrada = cocheExcede.getHoraEntrada();
             String HoraEntrada = formatoHora.format(horaEntrada.getTime());
 
             int diferencia = -1;
 
             String HoraSalida = "--";
-            Calendar horaSalida = cocheExcede.getHoraSalida();
+            Date horaSalida = cocheExcede.getHoraSalida();
 
             if (horaSalida != null) {
-                Date horaSalida1 = cocheExcede.getHoraSalida().getTime();
+                Date horaSalida1 = cocheExcede.getHoraSalida();
                 HoraSalida = formatoHora.format(horaSalida.getTime());
                 long minutosHoraEntrada = horaEntrada.getTime();
                 long minutosHoraSalida = horaSalida1.getTime();
@@ -123,59 +125,55 @@ public class DatosParking {
 
     }
 
-    
     public static List<CocheModelo> busquedaCoches(String matriculaRecibida) throws SQLException {
 
         List<CocheModelo> listaCochesMatricula = new ArrayList<CocheModelo>();
-        
+
         Connection conexion = DriverManager.getConnection(url, usuario, pass);
         Statement solicitud = (Statement) conexion.createStatement();
         ResultSet resultados = solicitud.executeQuery("SELECT * FROM coche");
+         while (resultados.next()) {
+      
+        CocheModelo cocheEnc =Modelo.persistencia.DatosParking.ResultSetToCoche(resultados);
 
-        while (resultados.next()) {
+        //Hora entrada y salida
+        SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
+        Date horaEntrada = cocheEnc.getHoraEntrada();
+        String HoraEntrada = formatoHora.format(horaEntrada);
 
-            CocheModelo cocheEnc = Modelo.persistencia.DatosParking.ResultSetToCoche(resultados);
-        
-            //Hora entrada y salida
-            SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-            Date horaEntrada = cocheEnc.getHoraEntrada().getTime();
-            String HoraEntrada = formatoHora.format(horaEntrada.getTime());
+        int diferencia = -1;
+        String HoraSalida = "";
+        Date horaSalida = cocheEnc.getHoraSalida();
 
-            int diferencia = -1;
-            String HoraSalida = "";
-            Calendar horaSalida = cocheEnc.getHoraSalida();
+        if (horaSalida != null) {
+            Date horaSalida1 = cocheEnc.getHoraSalida();
+            HoraSalida = formatoHora.format(horaSalida.getTime());
+            long minutosHoraEntrada = horaEntrada.getTime();
+            long minutosHoraSalida = horaSalida1.getTime();
+            diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000 * 60));
 
-            if (horaSalida != null) {
-                Date horaSalida1 = cocheEnc.getHoraSalida().getTime();
-                HoraSalida = formatoHora.format(horaSalida.getTime());
-                long minutosHoraEntrada = horaEntrada.getTime();
-                long minutosHoraSalida = horaSalida1.getTime();
-                diferencia = (int) ((minutosHoraSalida - minutosHoraEntrada) / (1000 * 60));
-
-            } else {
-                HoraSalida = "--";
-                diferencia = -1;
-            }
-            //Tiempo permitido
-            int tiempoPermitido = cocheEnc.getTiempoPermitido();
-            String TiempoPermitido = String.valueOf(tiempoPermitido);
-
-            cocheEnc.setHoraEntradaConFormato(HoraEntrada);
-            cocheEnc.setHoraSalidaConFormato(HoraSalida);
-
-            if (cocheEnc.getMatricula().startsWith(matriculaRecibida)) {
-
-                listaCochesMatricula.add(cocheEnc);
-
-            }
+        } else {
+            HoraSalida = "--";
+            diferencia = -1;
         }
-        resultados.close();
-        solicitud.close();
-        conexion.close();
-        return listaCochesMatricula;
+        //Tiempo permitido
+        int tiempoPermitido = cocheEnc.getTiempoPermitido();
+        String TiempoPermitido = String.valueOf(tiempoPermitido);
+
+        cocheEnc.setHoraEntradaConFormato(HoraEntrada);
+        cocheEnc.setHoraSalidaConFormato(HoraSalida);
+
+        if (cocheEnc.getMatricula().startsWith(matriculaRecibida)) {
+
+            listaCochesMatricula.add(cocheEnc);
+
+        }
     }
 
-    public static List<CocheModelo> busquedaCochesAparcados() throws SQLException {
+    return listaCochesMatricula ;
+}
+
+public static List<CocheModelo> busquedaCochesAparcados() throws SQLException {
 
         List<CocheModelo> listaCochesAparcados = new ArrayList<CocheModelo>();
         Connection conexion = DriverManager.getConnection(url, usuario, pass);
@@ -188,15 +186,15 @@ public class DatosParking {
            
             //Hora entrada y salida
             SimpleDateFormat formatoHora = new SimpleDateFormat("HH:mm");
-            Date horaEntrada = cocheAparc.getHoraEntrada().getTime();
+            Date horaEntrada = cocheAparc.getHoraEntrada();
             String HoraEntrada = formatoHora.format(horaEntrada.getTime());
 
             int diferencia = -1;
             String HoraSalida = "";
-            Calendar horaSalida = cocheAparc.getHoraSalida();
+            Date horaSalida = cocheAparc.getHoraSalida();
 
             if (horaSalida != null) {
-                Date horaSalida1 = cocheAparc.getHoraSalida().getTime();
+                Date horaSalida1 = cocheAparc.getHoraSalida();
                 HoraSalida = formatoHora.format(horaSalida.getTime());
                 long minutosHoraEntrada = horaEntrada.getTime();
                 long minutosHoraSalida = horaSalida1.getTime();

@@ -38,17 +38,15 @@ public class ParkingServlet extends HttpServlet {
             throws ServletException, IOException, SQLException {
         /*Aquí comienza la implementación de nuestro código*/
         HttpSession session = request.getSession(false); //Para crear la sesión, siempre inicializamos a false
-        List<CocheModelo> coches = DatosParking.cochesZonaAzul();
-
         if (session != null) {
             //Se llama al modelo
+            List<CocheModelo> coches = DatosParking.cochesZonaAzul();
 
             String accion = request.getParameter("accion");
 
             if (accion.equalsIgnoreCase("consultarAparcamiento")) {
 
-                //session.setAttribute("coches", coches);
-                request.setAttribute("coches", coches);
+                session.setAttribute("coches", coches);
                 String url = "/verListaCoches.jsp";
 
                 ServletContext sc = getServletContext();
@@ -56,29 +54,32 @@ public class ParkingServlet extends HttpServlet {
                 rd.forward(request, response);
 
             } else if (accion.equalsIgnoreCase("excedenTiempo")) {
-                // String opcion = request.getParameter("excesotiempo");
-                String url = "/tiempoExcedido.jsp";
+                String opcion = request.getParameter("excesotiempo");
+                String url = "/tiempoPermitido.jsp";
 
-                List<CocheModelo> cochesExceden = DatosParking.vehiculosExceden(true);
-                request.setAttribute("cochesExceden", cochesExceden);
-                ServletContext sc = getServletContext();
-                RequestDispatcher rd = sc.getRequestDispatcher(url);
-                rd.forward(request, response);
-                
-            } else if (accion.equalsIgnoreCase("noExcedenTiempo")) {
+                if (opcion.equals("si")) {
+                    List<CocheModelo> cochesExceden = DatosParking.vehiculosExceden(true);
+                    session.setAttribute("cochesExceden", cochesExceden);
+//                    ServletContext sc = getServletContext();
+//                RequestDispatcher rd = sc.getRequestDispatcher(url);
+//                rd.forward(request, response);
 
-                List<CocheModelo> cochesNoExceden = DatosParking.vehiculosExceden(false);
+                } else {
+                    List<CocheModelo> cochesNoExceden = DatosParking.vehiculosExceden(false);
+                    session.setAttribute("cochesNoExceden", cochesNoExceden);
+//                    ServletContext sc = getServletContext();
+//                RequestDispatcher rd = sc.getRequestDispatcher(url);
+//                rd.forward(request, response);
 
-                request.setAttribute("cochesNoExceden", cochesNoExceden);
-                String url = "/tiempoNoExcedido.jsp";
+                }
+
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
 
             } else if (accion.equalsIgnoreCase("buscarMatricula")) {
                 List<CocheModelo> cochesEncontrados = DatosParking.busquedaCoches(request.getParameter("matriculaCoche"));
-                // session.setAttribute("buscarMatricula", cochesEncontrados);
-                request.setAttribute("buscarMatricula", cochesEncontrados);
+                session.setAttribute("buscarMatricula", cochesEncontrados);
                 String url = "/busquedaPorMatricula.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
@@ -86,21 +87,13 @@ public class ParkingServlet extends HttpServlet {
 
             } else if (accion.equalsIgnoreCase("buscarAparcados")) {
                 List<CocheModelo> cochesAparcados = DatosParking.busquedaCochesAparcados();
-                request.setAttribute("buscarCochesAparcados", cochesAparcados);
-                //session.setAttribute("buscarCochesAparcados", cochesAparcados);
+                session.setAttribute("buscarCochesAparcados", cochesAparcados);
                 String url = "/cochesAunAparcados.jsp";
                 ServletContext sc = getServletContext();
                 RequestDispatcher rd = sc.getRequestDispatcher(url);
                 rd.forward(request, response);
 
             }
-        } else {
-            request.setAttribute("coches", coches);
-            String url = "/index.jsp";
-            ServletContext sc = getServletContext();
-
-            RequestDispatcher rd = sc.getRequestDispatcher(url);
-            rd.forward(request, response);
         }
     }
 

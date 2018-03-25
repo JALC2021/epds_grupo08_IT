@@ -6,15 +6,14 @@
 package Modelo;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Objects;
 
 public class CocheModelo {
 
     private String matricula;
     private String modelo;
-    private Date horaEntrada;
-    private Date horaSalida;
+    private Calendar horaEntrada;
+    private Calendar horaSalida;
     private int tiempoPermitido;
     private String horaEntradaConFormato;
     private String horaSalidaConFormato;
@@ -23,7 +22,7 @@ public class CocheModelo {
     }
 
     
-    public CocheModelo(String matricula, String modelo, Date horaEntrada, Date horaSalida, int tiempoPermitido) {
+    public CocheModelo(String matricula, String modelo, Calendar horaEntrada, Calendar horaSalida, int tiempoPermitido) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.horaEntrada = horaEntrada;
@@ -48,19 +47,19 @@ public class CocheModelo {
         this.modelo = modelo;
     }
 
-    public Date getHoraEntrada() {
+    public Calendar getHoraEntrada() {
         return horaEntrada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
+    public void setHoraEntrada(Calendar horaEntrada) {
         this.horaEntrada = horaEntrada;
     }
 
-    public Date getHoraSalida() {
+    public Calendar getHoraSalida() {
         return horaSalida;
     }
 
-    public void setHoraSalida(Date horaSalida) {
+    public void setHoraSalida(Calendar horaSalida) {
 
         this.horaSalida = horaSalida;
     }

@@ -50,23 +50,48 @@ public class Almacen {
         Query q = session.createQuery("from Libro where isbn = '" + isbn + "'");
         libro = (Libro) q.uniqueResult();
         libro.setCantidad(1);
+//muy importante hacer commit para que se termine de ejecutar y cerrar la transaccion.Sino se especifica, la transaccion queda abierta y no permite ejecutar otras 
         tx.commit();
-//muy importante hacer commit para que se termine de ejecutar y cerrar la
-//transaccion.Sino se especifica
-//, la transaccion queda abierta y no permite ejecutar
-//otras tx.commit();
         return libro;
     }
 
     public List<Libro> consultaLibrosDisponibles() throws SQLException {
         session = HibernateUtil.getSessionFactory().getCurrentSession();
         org.hibernate.Transaction tx = session.beginTransaction();
-        Query q = session.createQuery("From Libro");
+        Query q = session.createQuery("from Libro");
         List resultados = (List<Libro>) q.list();
+//muy importante hacer commit para que se termine de ejecutar y cerrar la transaccion.Sino se especifica, la transaccion queda abierta y no permite ejecutar otras 
         tx.commit();
-//muy importante hacer commit para que se termine de ejecutar y cerrar la 
-//transaccion.Sino se especifica
-//transaccion queda abierta y no permite ejecutar otras tx.commit();
         return resultados;
     }
+    
+    public String consultaEditorial(String isbn){
+        
+        Editorial editorial = null;
+        session = HibernateUtil.getSessionFactory().getCurrentSession();
+        org.hibernate.Transaction tx = session.beginTransaction();
+        Query q = session.createQuery("from Editorial where id = (from Libro where isbn = "+isbn+")");
+        
+        editorial = (Editorial) q.uniqueResult();
+        
+        tx.commit();
+        
+        return editorial.getNombre();
+    }
+    
+    public boolean consultaDisponibilidadLibro(int isbn) throws SQLException {
+
+        boolean disponible = false;
+        List<Libro> lista = this.consultaLibrosDisponibles();
+        Iterator it = lista.iterator();
+        while (it.hasNext() && !disponible) {
+            Libro libro = (Libro) it.next();
+            if (libro.getIsbn() == isbn) {
+                disponible = true;
+            }
+        }
+        return disponible;
+        
+    }
+    
 }

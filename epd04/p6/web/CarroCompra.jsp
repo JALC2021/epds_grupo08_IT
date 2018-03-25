@@ -1,7 +1,4 @@
-<%-- 
-    Document   : CarroCompra
-    Author     : ricardo
---%>
+
 
 <%--Following directive allows the JSP page to use any of the builtin object session methods such as 
 session.getCreationTime() or session.getLastAccessTime(): --%>
@@ -9,9 +6,10 @@ session.getCreationTime() or session.getLastAccessTime(): --%>
 <%@page import="java.util.*" %>
 <%@page import="libreria.*" %>
 <%
-    Almacen almacen = new Almacen();
-    List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
-    List<Libro> listaCompra = almacen.consultaListaLibrosSolicitados(listaIsbns);
+        List<String> listaIsbns = (List<String>) session.getAttribute("tienda.carro");
+
+    //List<Libro> listaCompra = Almacen.consultaListaLibrosSolicitados(listaIsbns);
+    List<Libro> listaCompra = (List<Libro>)request.getAttribute("librosSolicitados");
     if (listaCompra != null && (listaCompra.size() > 0)) {
 %>
 <center>
@@ -21,18 +19,19 @@ session.getCreationTime() or session.getLastAccessTime(): --%>
             <td><b>Autor</b></td>
             <td><b>Precio</b></td>
             <td><b>Cantidad</b></td>
-            <td></td>
+            <td><b>Editorial</b></td>
         </tr>
         <%
             for (int idx = 0; idx < listaCompra.size(); idx++) {
-                Libro libro = listaCompra.get(idx);
+                Libro libro = listaCompra.get(idx);                
+                //request.setAttribute("idEditorial", libro.getId()); 
         %>
         <tr>
             <td><b><%= libro.getTitulo()%></b></td>
             <td><b><%= libro.getAutor()%></b></td>
             <td><b><%= libro.getPrecio()%></b></td>
             <td><b><%= libro.getCantidad()%></b></td>
-            <td></td>
+            <td><b><%= libro.getEditorial().getNombre()%></b></td>
         </tr>
         <%
             }%>

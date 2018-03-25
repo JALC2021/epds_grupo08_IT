@@ -1,7 +1,4 @@
-<%-- 
-    Document   : Tienda
-    Author     : ricardo
---%>
+
 
 <%@page contentType="text/html" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.List" %>
@@ -10,13 +7,7 @@
 <%@page import="libreria.Libro" %>
 
 <%
-    List<Libro> listaLibros = null;
-    Almacen almacen = new Almacen();
-    try {
-        listaLibros = almacen.consultaLibrosDisponibles();
-    } catch (Exception ex) {
-        out.print(ex.getMessage());
-    }
+    List<Libro> listaLibros = (List<Libro>)request.getAttribute("listaLibros");
 %>
 <html>
     <head>

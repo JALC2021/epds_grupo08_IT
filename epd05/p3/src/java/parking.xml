@@ -1,0 +1,35 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+ 
+<struts>
+    <!-- Add your configuration elements here -->
+    <package name="aparc" namespace="/aparcamiento" extends="struts-default">
+        <action name="inicio">
+            <result>/vistas/index.jsp</result>
+        </action>
+        
+      
+        
+        <action name="insertar" method="executeInsertar" class="parking.actions.ListaCoches">
+            <result name="success">/vistas/formularios.jsp</result>
+        </action>
+     
+        <action name="editar" method="executeEditar" class="parking.actions.ListaCoches">
+            <result name="success">/vistas/formularios.jsp</result>
+        </action>
+        
+    
+        
+        <action name="insertVehiculo" method="executeInsertVehiculo" class="parking.actions.ListaCoches">
+            <result name="success">/vista_aparcamiento/ResultadoFavorable.jsp</result>
+        </action>
+        
+        <action name="editVehiculo" method="executeEditVehiculo" class="parking.actions.ListaCoches">
+            <result name="success">/vista_aparcamiento/ResultadoFavorable.jsp</result>
+        </action>
+
+    </package>
+</struts>

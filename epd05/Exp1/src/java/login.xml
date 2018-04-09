@@ -1,0 +1,18 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: susana -->
+ 
+<struts>
+    <!--     Configuration for the default package. -->
+    <package name="login" namespace="/login" extends="struts-default">
+        <action name="login"> 
+            <result>/vista/index.jsp</result> 
+        </action>
+        <action name="loginCheck" class="it.login.actions.LoginCheck"> 
+            <result name="success">/vista/welcome.jsp</result> 
+            <result name="error">/vista/error.jsp</result> 
+        </action> 
+    </package>
+</struts>

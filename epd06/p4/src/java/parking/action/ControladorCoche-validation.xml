@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE validators PUBLIC "-//Apache Struts//XWork Validator 1.0.3//EN"
+        "http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+        
+<validators>
+    <field name="matricula">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Introduzca la matr&iacute;cula</message>
+        </field-validator>
+        
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="stringlength">8</param>
+            <message>La matr&iacute;cula debe tener una longitud exacta de 8</message>
+        </field-validator>
+        
+        <field-validator type="regex">
+            <param name="expression"> / ^[0-9]{5}[A-Z]{3}$ /</param>
+            <message>La matr&iacute;cula debe tener 5 n&uacute;meros y 3 letras en ese orden</message>
+        </field-validator>
+    </field>
+
+
+    <field name="modelo">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Introduzca el modelo</message>
+        </field-validator>
+       
+        <field-validator type="stringlength">
+            <param name="trim">true</param>
+            <param name="minLength">3</param>
+            <param name="maxLength">15</param>
+            <message>El modelo debe tener una longitud entre 3 y 15</message>
+        </field-validator>
+    </field>
+         
+    <field name="horaEntrada">
+        <field-validator type="required">
+            <param name="trim">true</param>
+            <message>Introduzca la hora de entrada</message>
+        </field-validator>
+    </field>
+            
+    <field name="horaSalida">
+        <field-validator type="required">
+            <param name="trim">true</param>
+            <message>Introduzca la hora de salida</message>
+        </field-validator>
+    </field>
+        
+    <field name="tiempoPermitido">
+        <field-validator type="required">
+            <param name="trim">true</param>
+            <message>Introduzca el tiempo permitido</message>
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">1</param>
+            <param name="max">4</param>
+            <message>EL tiempo debe estar contenido entre ${min} minuto and ${max} minutos</message>
+        </field-validator>
+    </field>
+
+</validators>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-abr-2018 13:45:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="modelo.Coche" table="coche" catalog="parking" optimistic-lock="version">
+        <id name="matricula" type="string">
+            <column name="matricula" length="10" />
+            <generator class="assigned" />
+        </id>
+        <property name="modelo" type="string">
+            <column name="modelo" length="20" not-null="true" />
+        </property>
+        <property name="horaEntrada" type="time">
+            <column name="hora_entrada" length="8" />
+        </property>
+        <property name="horaSalida" type="time">
+            <column name="hora_salida" length="8" />
+        </property>
+        <property name="tiempoPermitido" type="int">
+            <column name="tiempo_permitido" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

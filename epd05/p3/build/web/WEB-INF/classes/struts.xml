@@ -1,0 +1,51 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+      
+    </package>
+    
+    <package name="listado" namespace="/" extends="struts-default">
+        <action name="controladorCoche" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        <action name="insertar" method="executeInsertar" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/formulario.jsp</result>
+        </action>
+        <action name="editar" method="executeEditar" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/formulario.jsp</result>
+        </action>
+        <action name="eliminar" method="executeEliminar" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        
+        <action name="insertCoche" method="executeInsertCoche" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        
+        <action name="editCoche" method="executeEditCoche" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        
+        <action name="consultarTiempoExcedido" method="executeConsultarTiempoExcedido" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        
+        <action name="consultarTiempoNoExcedido" method="executeConsultarTiempoNoExcedido" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>
+        </action>
+        
+        <action name="consultarCochesAparcados" method="executeConsultarCochesAparcados" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>    
+        </action>
+        
+        <action name="consultarCochesPorMatricula" method="executeConsultarCochesPorMatricula" class="parking.action.ControladorCoche">
+            <result name="success">/vistas/listadoCoches.jsp</result>    
+        </action>
+        
+        
+    </package>
+</struts>

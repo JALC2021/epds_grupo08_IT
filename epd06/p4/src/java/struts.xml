@@ -24,12 +24,12 @@
         
         <action name="insertCoche" method="executeInsertCoche" class="parking.action.ControladorCoche">
             <result name="success">/vistas/listadoCoches.jsp</result>
-             <result name="input">/vistas/listadoCoches.jsp</result>
+<!--             <result name="input">/vistas/listadoCoches.jsp</result>-->
         </action>
         
         <action name="editCoche" method="executeEditCoche" class="parking.action.ControladorCoche">
             <result name="success">/vistas/listadoCoches.jsp</result>
-            <result name="input">/vistas/listadoCoches.jsp</result>
+<!--            <result name="input">/vistas/listadoCoches.jsp</result>-->
         </action>
         
         <action name="consultarTiempoExcedido" method="executeConsultarTiempoExcedido" class="parking.action.ControladorCoche">
@@ -46,9 +46,10 @@
         
         <action name="consultarCochesPorMatricula" method="executeConsultarCochesPorMatricula" class="parking.action.ControladorCoche">
             <result name="success">/vistas/listadoCoches.jsp</result> 
-            <result name="input">/vistas/listadoCoches.jsp</result>   
+<!--            <result name="input">/vistas/listadoCoches.jsp</result>   -->
         </action>
         
         
     </package>
+      
 </struts>

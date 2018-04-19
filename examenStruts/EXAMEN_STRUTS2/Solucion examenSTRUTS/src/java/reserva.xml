@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="reserva" namespace="/reserva/actions" extends="struts-default">
+        <action name="listadoReserva" class="reserva.actions.ListadoAnimales">
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+        <action name="listadoFiltro" class="reserva.actions.ListadoAnimales" method="filtrarAnimal">
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+        <action name="borrarAnimal" class="reserva.actions.BorrarAnimal">
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+        <action name="addAnimal" class="reserva.actions.ListadoAnimales">
+            <result name="success">/vistas/add.jsp</result>
+        </action>
+        <action name="nuevoAnimal" class="reserva.actions.AddAnimal">
+            <result name="input">/vistas/add.jsp</result>
+            <result name="success">/vistas/list.jsp</result>
+        </action>
+             
+    </package>
+</struts>
+

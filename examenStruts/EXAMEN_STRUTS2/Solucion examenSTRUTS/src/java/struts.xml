@@ -1,0 +1,16 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <include file="reserva.xml"/>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+        <action name="">
+            <result type="chain">
+                <param name="actionName">listadoReserva</param>
+                <param name="namespace">/reserva/actions</param>
+            </result>
+        </action>
+    </package>
+</struts>

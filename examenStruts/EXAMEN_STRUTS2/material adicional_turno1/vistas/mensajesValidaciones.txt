@@ -1,0 +1,7 @@
+identificador.required=Identifier is required
+identificador.regex=Not correct syntax
+pais.required=Country Required
+precio.required=Price Required
+precio.limit=Price need to be between 100000 and 999999
+email.required=Email Required
+email.regex=Not correct email

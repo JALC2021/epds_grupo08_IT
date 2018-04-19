@@ -1,0 +1,221 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Reserva de las Guardas. System Manager</title>
+    </head>
+    <body>
+        <h1>Reserva de las Guardas. System Manager</h1>
+        <form id="filtro" name="filtro" action="/ItEv2STRUTS_2/reserva/actions/filtro.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+        <table >
+            <tr>               
+                <td>
+                    <tr>
+    <td class="tdLabel"><label for="filtro_tipoAnimal" class="label">Animal:</label></td>
+    <td
+><select name="tipoAnimal" id="filtro_tipoAnimal">
+    <option value="lobo">lobo</option>
+    <option value="tigre">tigre</option>
+    <option value="jirafa">jirafa</option>
+    <option value="elefante">elefante</option>
+
+
+</select>
+</td>
+</tr>
+
+
+                    </td>
+            </tr>
+            <tr>
+                <td>
+                    <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="filtro_0" value="Filter by animal"/>
+</div></td>
+</tr>
+
+
+                </td>
+            </tr>                
+        </table>
+        </table></form>
+
+
+
+
+        <form id="listado" name="listado" action="/ItEv2STRUTS_2/reserva/actions/listado.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+        <table >            
+                <td>
+                    <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="listado_0" value="Remove filter"/>
+</div></td>
+</tr>
+
+
+                </td>
+            </tr>                
+        </table>
+        </table></form>
+
+
+
+
+        
+        <table border=1 cellspacing=1 cellpadding=2 width="100%" bgcolor="#FFFFFF">
+            <tr>
+                <td><b>Identificador</b></td>
+                <td><b>Tipo Animal</b></td>
+                <td><b>Pais</b></td>
+                <td><b>Precio</b></td>
+                <td><b>Email</b></td>
+                <td>
+                     <form id="formulario" name="formulario" action="/ItEv2STRUTS_2/reserva/actions/formulario.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                        <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="formulario_0" value="Add"/>
+</div></td>
+</tr>
+
+
+                    </table></form>
+
+
+
+
+                </td>
+            </tr>
+            
+                    
+                
+                    <tr>
+                        <td>ARDG1234</td>
+                        <td>lobo</td>
+                        <td>rusia</td>
+                        <td>100000</td>
+                        <td>rusia@putin.ru</td>
+                        <td>
+                            <form id="borrarAnimal" name="borrarAnimal" action="/ItEv2STRUTS_2/reserva/actions/borrarAnimal.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                                <input type="hidden" name="borrar" value="1" id="borrarAnimal_borrar"/>
+                                <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+</div></td>
+</tr>
+
+
+                            </table></form>
+
+
+
+
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>ERTY8795</td>
+                        <td>tigre</td>
+                        <td>tailandia</td>
+                        <td>200000</td>
+                        <td>tailandia@reserve.ta</td>
+                        <td>
+                            <form id="borrarAnimal" name="borrarAnimal" action="/ItEv2STRUTS_2/reserva/actions/borrarAnimal.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                                <input type="hidden" name="borrar" value="2" id="borrarAnimal_borrar"/>
+                                <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+</div></td>
+</tr>
+
+
+                            </table></form>
+
+
+
+
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>OPER5632</td>
+                        <td>jirafa</td>
+                        <td>kenia</td>
+                        <td>300000</td>
+                        <td>kenia@reserve.kn</td>
+                        <td>
+                            <form id="borrarAnimal" name="borrarAnimal" action="/ItEv2STRUTS_2/reserva/actions/borrarAnimal.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                                <input type="hidden" name="borrar" value="3" id="borrarAnimal_borrar"/>
+                                <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+</div></td>
+</tr>
+
+
+                            </table></form>
+
+
+
+
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>AWER4587</td>
+                        <td>elefante</td>
+                        <td>zimbabue</td>
+                        <td>489500</td>
+                        <td>zimbabue@reserve.zm</td>
+                        <td>
+                            <form id="borrarAnimal" name="borrarAnimal" action="/ItEv2STRUTS_2/reserva/actions/borrarAnimal.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                                <input type="hidden" name="borrar" value="4" id="borrarAnimal_borrar"/>
+                                <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+</div></td>
+</tr>
+
+
+                            </table></form>
+
+
+
+
+                        </td>
+                    </tr>
+                
+                    <tr>
+                        <td>LLKK5545</td>
+                        <td>lobo</td>
+                        <td>Francia</td>
+                        <td>1000000</td>
+                        <td>france@reserve.fr</td>
+                        <td>
+                            <form id="borrarAnimal" name="borrarAnimal" action="/ItEv2STRUTS_2/reserva/actions/borrarAnimal.action;jsessionid=C0BEC91E3811F1FDBBA109E262046562" method="post">
+<table class="wwFormTable">
+                                <input type="hidden" name="borrar" value="5" id="borrarAnimal_borrar"/>
+                                <tr>
+    <td colspan="2"><div align="right"><input type="submit" id="borrarAnimal_0" value="Delete"/>
+</div></td>
+</tr>
+
+
+                            </table></form>
+
+
+
+
+                        </td>
+                    </tr>
+                
+            
+            
+        </table>
+
+    </body>
+</html>

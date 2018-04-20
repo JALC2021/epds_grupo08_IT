@@ -46,7 +46,7 @@ public class ControladorAnimal extends ActionSupport {
     @Override
     public String execute() throws Exception {
        reserva=reser.listadoAnimales();
-//       animales=reser.listadoTipoAnimal();
+       animales=reser.listadoTipoAnimal();
         return SUCCESS;
     }
     

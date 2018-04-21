@@ -8,7 +8,7 @@
     </head>
     <body>
         <h1>Reserva de las Guardas. System Manager</h1>
-
+       
         <s:form id="filtro" name="filtro" action="listadoFiltro" method="post">
             <table>
                 <tr>

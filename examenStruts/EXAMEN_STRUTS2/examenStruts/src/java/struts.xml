@@ -11,7 +11,20 @@
     </package>
 
    <package name="animal" namespace="/" extends="struts-default">
+       
         <action name="controladorAnimal" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result>
+        </action>
+        <action name="filtrar" method="filtrarAnimales" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result> 
+        </action>
+        <action name="insertar" class="controlador.actions.ControladorAnimal">
+               <result name="success">/Vistas/add.jsp</result>
+        </action>
+        <action name="insertarAnimal" method="insertarAnimal" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result>
+        </action>
+        <action name="eliminar" method="eliminarAnimal" class="controlador.actions.ControladorAnimal">
             <result name="success">/Vistas/list.jsp</result>
         </action>
       

@@ -20,7 +20,7 @@
         <!-- Desplegable con animales con botones filtrar por animal y borrar filtro-->
 
    
-        <s:form id="filtro" name="filtro" action="" method="post">
+        <s:form id="filtro" name="filtro" action="filtrar" namespace="/" method="post">
             <table>
                 <tr>
                     <td class="tdLabel"><s:label for="filtro_tipoAnimal" class="label" value="Animal:"></s:label></td>
@@ -34,8 +34,13 @@
             </table>
         </s:form>
 
-        <s:form name="botones" action="" method="post">
-            <div align="right"><s:submit id="listado_0" value="Remove filter"/></div>
+        <s:form id="listado" name="listado" action="controladorAnimal" method="post">
+              <table>
+                <tr>
+                   <td colspan="2"><div align="right"><s:submit id="listado_0" value="Remove filter"/></div></td>
+                </tr>                             
+            </table>
+            
         </s:form>
             
 
@@ -48,7 +53,7 @@
                 <td><b>Pais</b></td>
                 <td><b>Precio</b></td>
                 <td><b>Email</b></td>
-                <td><s:form id="formulario" name="formulario" action="" method="post">
+                <td><s:form id="formulario" name="formulario" action="insertar" method="post">
                         <div align="right"><s:submit id="formulario_0" value="Add"></s:submit></div></s:form></td>
                     </tr>
 
@@ -60,10 +65,10 @@
                     <td><s:property value="pais"></s:property></td>
                     <td><s:property value="precio"></s:property></td>
                     <td><s:property value="email"></s:property></td>
-                    <td><s:form id="borrarAnimal" name="borrarAnimal" action="" method="post">
-                            <s:hidden name="borrar" value="1" id="borrarAnimal_borrar"/>
+                    <td><s:form id="borrarAnimal" name="borrarAnimal" action="eliminar" method="post">
+                            <s:hidden name="id"/>
                             <div align="right"><s:submit id="borrarAnimal_0" value="Delete"/></div></s:form></td>
-                    </tr>
+                </tr>
 
             </s:iterator>
 

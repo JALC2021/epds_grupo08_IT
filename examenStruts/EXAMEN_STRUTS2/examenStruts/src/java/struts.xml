@@ -22,7 +22,9 @@
                <result name="success">/Vistas/add.jsp</result>
         </action>
         <action name="insertarAnimal" method="insertarAnimal" class="controlador.actions.ControladorAnimal">
+            <result name="input">/Vistas/add.jsp</result>
             <result name="success">/Vistas/list.jsp</result>
+            
         </action>
         <action name="eliminar" method="eliminarAnimal" class="controlador.actions.ControladorAnimal">
             <result name="success">/Vistas/list.jsp</result>

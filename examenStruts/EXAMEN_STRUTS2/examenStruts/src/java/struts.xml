@@ -1,0 +1,41 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- Author: susana -->
+ 
+<struts>
+   <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default">
+      
+    </package>
+
+   <package name="animal" namespace="/" extends="struts-default">
+       
+        <action name="controladorAnimal" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result>
+        </action>
+        
+        <action name="filtrar" method="filtrarAnimales" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result> 
+        </action>
+        
+        <action name="insertar" class="controlador.actions.ControladorAnimal">
+               <result name="success">/Vistas/add.jsp</result>
+        </action>
+        
+        <action name="insertAnimal" class="controlador.actions.Insertar">
+            <result name="input">/Vistas/add.jsp</result>
+            <result name="success">/Vistas/list.jsp</result>         
+        </action>
+        
+        <action name="eliminar" method="eliminarAnimal" class="controlador.actions.ControladorAnimal">
+            <result name="success">/Vistas/list.jsp</result>
+        </action>
+      
+            
+        
+        
+        
+   </package>
+</struts>

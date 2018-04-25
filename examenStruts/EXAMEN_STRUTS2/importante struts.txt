@@ -1,0 +1,68 @@
+Hipervinculo: crear un action sin class ni method, solo con name
+y result success con la pagina a la que quieras ir.
+ese name sera el href de la etiqueta <s:a href="">nombreenlace</s:a>, 
+poniendo como nombreenlace lo que quieras que salga en el hipervinculo
+y este hipervinvulo ira en la pagina que quieras que aparezca para 
+redireccionarte a otra.
+
+Los atributos que usamos en la vista en las etiquetas son los que están 
+en el controlador. Por lo tanto, mismo nombre, porque son los mismos.
+Son los que controlan esos elementos del formulario.
+Por lo ponemos un atributo que no esté en el controlador no funcionará.
+Las vistas sólo trabajan con clases action, no con clases bean.
+Por lo que tenemos que tener en el/los action lo que queramos usar en la
+vista, sino no funcionará.
+Cuando iteramos una lista en la vista como esa lista es de un tipo concreto.
+Y ese tipo tendra unos atributos, unas columnas, hay si podemos acceder a esos
+valores de las columnas que se encuentran en una clase bean, porque el tipo
+de dato que estamos iterando se encuentra en una clase action.
+Java busca en todas las clases tipo action ese los atributos que aparecen 
+en las vistas para que controlen los elementos de los formularios.
+
+Atributos etiqueta select. Imprescindible name, que es el atributo donde
+se guardará el valor de lo que hayamos seleccionado en el desplegable.
+
+Para saber lo que tenemos que poner aquí hay que mirar cómo está hecha la 
+consulta. En el caso de filtrar por ejemplo necesitamos saber por qué 
+atributo está filtrando. Ese atributo será lo que tengamos que poner en el 
+name, que es donde se guardará lo que seleccionemos para usarlo en la consulta.
+
+list, que es la lista que vamos a recorrer para mostrar los valores que 
+contiene.
+listkey, es la clave que se enviará para mostrar los resultados.
+listValue es el atributo que usaremos para mostrar los valores que 
+aparecen en el desplegable.
+El atributo multiple si lo usamos convierte el select en una lista, y 
+podríamos selccionar varios valores a la vez, pero tendríamos luego 
+que partirlo o modificar la consulta. Según nos interese pondremos una
+cosa u otra.
+Exactamente con estos mismos atributos podemos crear la etiqueta checkboxlist
+o radio; para hacer una lista de check o de radio.
+Importante: el atributo name lo necesitamos siempre para guardar en la 
+variable que pongamos el valor de lo que introducimos en dicha etiqueta.
+
+Estilo errores: poner la etiqueta <s:head />, justo antes del cierre </head> del html.
+Esto servirá para que salgan en rojo y negrita tanto los mensajes de error
+como los nombres de los campos cuando se han rellanado mal.
+
+Campos del formulario en varios idiomas: poniendo en la etiqueta de cada campo
+el atributo key. El nombre que le demos a ese atributo será el que debamos
+poner en los archivos propertis con su correspondiente valor. Igual
+que se hace para la validación.
+
+Estilos (temas) Struts 2:
+Struts 2 viene con tres temas incorporados: simple, xhtml, y css_xhtml. Si no especifica un tema, Struts 2 usará el xhtml tema de manera predeterminada.
+-xhtml: es el predeterminado. Permite mostrar el formulario en forma de tabla xhtml.
+-simple: permite introducir las etiquetas sin formato para la visualización; es decir
+las etiquetas se traducirán sin modificación.
+-css_xhtml: se adapta al modelo de las hojas de estilo css, con las etiquetas <span></span> y <div></div>
+A nivel sólo del formulario: <s:form name="test" theme="simple">
+• A nivel de la vista completa: <s:set name="theme" value="'simple'" scope="page" />
+• A nivel de toda la aplicación: <constant name="struts.ui.theme" value="simple" />
+
+Links interesantes:
+http://www.javatutoriales.com/2013/11/struts-2-parte-7-tags.html
+http://mundogeek.net/archivos/2009/02/13/etiquetas-struts-2/
+https://books.google.es/books?id=96HHRq6g5x8C&pg=PA126&lpg=PA126&dq=atributo+theme+struts+2&source=bl&ots=fzz8_sLl0a&sig=gRj-n7RI2mhfGRpgBvTIPlxMyY4&hl=es&sa=X&ved=2ahUKEwjllr3E6NLaAhVBPBQKHTkhBiQQ6AEwBXoECAAQYA#v=onepage&q=atributo%20theme%20struts%202&f=false
+https://www.youtube.com/watch?v=lfuH2iCcW1g -> Son 4 videos, desde la introducción, que son dos partes hasta validación (video: Sesión 3).
+

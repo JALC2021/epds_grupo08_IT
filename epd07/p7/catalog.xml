@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="http://localhost:8080/p6/servicioAutenticacion?Tester" uri="src/conf/xml-resources/web-service-references/servicioAutenticacion_Tester/wsdl/localhost_8080/p6/servicioAutenticacion.tester"/>
+    <system systemId="http://localhost:8080/p6/servicioAutenticacion?wsdl" uri="src/conf/xml-resources/web-service-references/servicioAutenticacion/wsdl/localhost_8080/p6/servicioAutenticacion.wsdl"/>
+    <system systemId="http://localhost:8080/p6/servicioAutenticacion?xsd=1" uri="src/conf/xml-resources/web-service-references/servicioAutenticacion/wsdl/localhost_8080/p6/servicioAutenticacion.xsd_1.xsd"/>
+</catalog>

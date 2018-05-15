@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Dao;
 
 import javax.ws.rs.ClientErrorException;
 import javax.ws.rs.client.Client;
@@ -21,13 +21,13 @@ import javax.ws.rs.core.GenericType;
  *        client.close();
  * </pre>
  *
- * @author susana
+ * @author jalc
  */
 public class NewJerseyClientPelicula {
 
     private WebTarget webTarget;
     private Client client;
-    private static final String BASE_URI = "http://localhost:8080/p7p/webresources";
+    private static final String BASE_URI = "http://localhost:8080/p7/webresources";
 
     public NewJerseyClientPelicula() {
         client = javax.ws.rs.client.ClientBuilder.newClient();
@@ -97,5 +97,5 @@ public class NewJerseyClientPelicula {
     public void close() {
         client.close();
     }
-    
+
 }

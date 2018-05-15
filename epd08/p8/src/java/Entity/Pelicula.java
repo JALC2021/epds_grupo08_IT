@@ -22,18 +22,21 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+ *
+ * @author jalc
+ */
 @Entity
 @Table(name = "pelicula")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Pelicula.findAll", query = "SELECT p FROM Pelicula p"),
-    @NamedQuery(name = "Pelicula.findById", query = "SELECT p FROM Pelicula p WHERE p.id = :id"),
-    @NamedQuery(name = "Pelicula.findByNombre", query = "SELECT p FROM Pelicula p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Pelicula.findByFechaEstreno", query = "SELECT p FROM Pelicula p WHERE p.fechaEstreno = :fechaEstreno"),
-    @NamedQuery(name = "Pelicula.findByFechaVideo", query = "SELECT p FROM Pelicula p WHERE p.fechaVideo = :fechaVideo"),
-    @NamedQuery(name = "Pelicula.findByIdioma", query = "SELECT p FROM Pelicula p WHERE p.idioma = :idioma"),
-    @NamedQuery(name = "Pelicula.findByPais", query = "SELECT p FROM Pelicula p WHERE p.pais = :pais")})
+    @NamedQuery(name = "Pelicula.findAll", query = "SELECT p FROM Pelicula p")
+    , @NamedQuery(name = "Pelicula.findById", query = "SELECT p FROM Pelicula p WHERE p.id = :id")
+    , @NamedQuery(name = "Pelicula.findByNombre", query = "SELECT p FROM Pelicula p WHERE p.nombre = :nombre")
+    , @NamedQuery(name = "Pelicula.findByFechaEstreno", query = "SELECT p FROM Pelicula p WHERE p.fechaEstreno = :fechaEstreno")
+    , @NamedQuery(name = "Pelicula.findByFechaVideo", query = "SELECT p FROM Pelicula p WHERE p.fechaVideo = :fechaVideo")
+    , @NamedQuery(name = "Pelicula.findByIdioma", query = "SELECT p FROM Pelicula p WHERE p.idioma = :idioma")
+    , @NamedQuery(name = "Pelicula.findByPais", query = "SELECT p FROM Pelicula p WHERE p.pais = :pais")})
 public class Pelicula implements Serializable {
 
     private static final long serialVersionUID = 1L;

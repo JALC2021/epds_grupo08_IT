@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>p5_epd9</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+        <script type="text/javascript" src="https://code.jquery.com/underscore-min"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                var xhttp = new XMLHttpRequest();
+                xhttp.open("GET", "http://localhost:8080/p7/webresources/bbdd.pelicula", true);
+                xhttp.setRequestHeader("Accept", "application/xml");
+                xhttp.onreadystatechange = function () {
+                    if (xhttp.readyState === 4 && xhttp.status === 200) {
+                        var rawXML = xhttp.responseXML;
+                        // busca la etiqueta película
+                        var xmlRow = $(rawXML).find('pelicula');
+                        // va recorriendo cada una
+                        $(xmlRow).each(function () {
+                            var fechaBBDD=$(this).find('fechaEstreno').text();
+                            var date=new Date(fechaBBDD);
+                            var fechaEstreno=date.toLocaleDateString();
+                            
+                            var date2=new Date($(this).find('fechaVideo').text());
+                            var fechaVideo=date.toLocaleDateString();
+                            
+                            
+                            $('#parrafoPeliculas').append('<label><strong>Nombre: </strong></label>'+$(this).find('nombre').text()+' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Fecha estreno: </strong></label>'+fechaEstreno+' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Fecha vídeo : </strong></label>'+fechaVideo+' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Idioma: </strong></label>'+$(this).find('idioma').text()+' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>País: </strong></label>'+$(this).find('pais').text());
+                            $('#parrafoPeliculas').append('<br/>');
+                            $('#tablaPeliculas').find('tbody').append('<tr>'
+                                    + '<td>' + $(this).find('id').text() + '</td>'
+                                    + '<td>' + $(this).find('nombre').text() + '</td>'
+                                    + '<td>' + fechaEstreno + '</td>'
+                                    + '<td>' + fechaVideo + '</td>'
+                                    + '<td>' + $(this).find('idioma').text() + '</td>'
+                                    + '<td>' + $(this).find('pais').text() + '</td>' + '</tr>');
+                        });
+//            var data = eval(xhttp.responseText);
+//            for (var i in data) { 
+//                var row = $("<tr>");
+//                for (var attr in data[i]) {
+//            $(row).append($("<td>").append(data[i][attr])); } 
+//        $("#data").append(row); 
+//        $("#status").text("Datos cargados"); } };
+                    }
+
+                };
+                xhttp.send();
+            });
+        </script>
+
+    </head>
+    
+    <body>
+        <p>FORMATO TABLA:</p>
+        <table id="tablaPeliculas" border="1">
+            <tr>
+                <th>ID</th>
+                <th>NOMBRE</th>  
+                <th>FECHA ESTRENO</th>  
+                <th>FECHA V&Iacute;DEO</th>  
+                <th>IDIOMA</th>  
+                <th>PA&Iacute;S</th>  
+               
+            </tr>
+        </table>
+        <p>FORMATO P&Aacute;RRAFO:</p>
+        <p id="parrafoPeliculas"></p>
+    </body>
+</html>

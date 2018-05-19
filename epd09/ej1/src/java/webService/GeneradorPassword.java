@@ -9,10 +9,7 @@ import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 
-/**
- *
- * @author jalc
- */
+
 @WebService(serviceName = "GeneradorPassword")
 public class GeneradorPassword {
 

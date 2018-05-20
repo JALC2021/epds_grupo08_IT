@@ -28,7 +28,7 @@ and open the template in the editor.
                             var fechaEstreno=date.toLocaleDateString();
                             
                             var date2=new Date($(this).find('fechaVideo').text());
-                            var fechaVideo=date.toLocaleDateString();
+                            var fechaVideo=date2.toLocaleDateString();
                             
                             
                             $('#parrafoPeliculas').append('<label><strong>Nombre: </strong></label>'+$(this).find('nombre').text()+' &nbsp;');
@@ -37,7 +37,7 @@ and open the template in the editor.
                             $('#parrafoPeliculas').append('<label><strong>Idioma: </strong></label>'+$(this).find('idioma').text()+' &nbsp;');
                             $('#parrafoPeliculas').append('<label><strong>País: </strong></label>'+$(this).find('pais').text());
                             $('#parrafoPeliculas').append('<br/>');
-                            $('#tablaPeliculas').find('tbody').append('<tr>'
+                            $('#tablaPeliculas').append('<tr>'
                                     + '<td>' + $(this).find('id').text() + '</td>'
                                     + '<td>' + $(this).find('nombre').text() + '</td>'
                                     + '<td>' + fechaEstreno + '</td>'

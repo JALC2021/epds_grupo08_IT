@@ -10,6 +10,10 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+    </head>
+
+    <body>
         <script type="text/javascript">
             $(document).ready(function () {
                 var xhttp = new XMLHttpRequest();
@@ -37,53 +41,67 @@ and open the template in the editor.
                                     + '<td>' + fechaVideo + '</td>'
                                     + '<td>' + $(this).find('idioma').text() + '</td>'
                                     + '<td>' + $(this).find('pais').text() + '</td>'
-
                                     + '<td>'
                                     + '<form id="delete" name="delete" action="#" method="post">'
                                     + '<input type="submit" id="id" name="delete" value="DELETE" />'
+                                    + ' <input type="hidden" id="iddelete" name="idborrar" value="' + $(this).find('id').text() + '" />'
                                     + '</form>'
                                     + '</td>'
-
-                                    + '<td>'
-                                    + '<form id="put" name="put" action="newhtml.html" method="post">'
-                                    + '<input type="submit" id="id" name="put" value="PUT" /></form>'
-                                    + '</form>'
-                                    + '</td>'
+                                    + '<td><input type="button" id="id" name="put" value="PUT"/></td>'
                                     + '</tr>');
                         });
 
                         if ($("input[name=delete]").click(function () {
-                            alert("delete");
+
+                            var id = $(this).parents("tr").find("td").eq(0).text();
+
+                            xhttp = new XMLHttpRequest();
+                            xhttp.open("DELETE", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/" + id, true);
+                            xhttp.send();
                         })) {
                         }
 
                         if ($("input[name=put]").click(function () {
-                            alert("put");
+                            $('#formPut').append(
+                                    '<p><label>id: </label><input type="text" id="id" name="idregistro" value="' + $(this).parents("tr").find("td").eq(0).text()+ ' "</p>'
+                                    + '<p><label>Nombre: </label><input type="text" id="nombre" name="nombre" value="' + $(this).parents("tr").find("td").eq(1).text()+ '"/></p>'
+                                    
+                                    + '<p><label>Fecha de estreno: </label><input type="text" id="fechaE" name="fechaE" value="' + $(this).parents("tr").find("td").eq(2).text()+'"/></p>'
+                                    + '<p><label>Fecha de vídeo: </label><input type="text" id="fechaV" name="fechaV" value="'+ $(this).parents("tr").find("td").eq(3).text()+'"/></p>'
+                                    + '<p><label>Idioma: </label> <select name="idioma"></p>'
+                                    + '<option value="'+ $(this).parents("tr").find("td").eq(4).text()+'" id="pbbdd">'+ $(this).parents("tr").find("td").eq(4).text()+'</option>'
+                                    + '<option value="Ingles" id="ingles">Ingles</option>'
+                                    + '<option value="Chino" id="chino">Chino</option>'
+                                    + '<option value="Espa&ntilde;ol" id="espanol">Espa&ntilde;ol</option>'
+                                    + '<option value="Ruso" id="ruso">Ruso</option>'
+                                    + '<option value="Frances" id="frances">Frances</option>'
+                                    + 'option value="Aleman" id="aleman">Aleman</option>'
+                                    + ' </select></p>'
+                                    + '<p><label>País: </label><select name="pais"></p>'
+                                    + '<option value="'+ $(this).parents("tr").find("td").eq(5).text()+'" id="pbbdd">'+ $(this).parents("tr").find("td").eq(5).text()+'</option>'
+                                    + ' <option value="España" id="AF">Afganistan</option>'
+                                    + '<option value="Alemania" id="AL">Albania</option>'
+                                    + '<option value="Portugal" id="DE">Alemania</option>'
+                                    + '<option value="Italia" id="AD">Andorra</option>'
+
+                                    + '  </select></p>'
+                                    + '<p><input type="submit" name="enviar" value="Editar"/></p>'
+
+                                    //para recoger-> $(this).find('nombreid de cada campo').text()
+                                    );
                         })) {
+
                         }
 
 
 
-
-
-                        //            var data = eval(xhttp.responseText);
-                        //            for (var i in data) {
-                        //                var row = $("<tr>");
-                        //                for (var attr in data[i]) {
-                        //            $(row).append($("<td>").append(data[i][attr])); } 
-                        //        $("#data").append(row); 
-                        //        $("#status").text("Datos cargados"); } };
                     }
-
                 };
                 xhttp.send();
             });
 
 
         </script>
-    </head>
-
-    <body>
         <h1>Lista de Peliculas</h1>
 
         <table id="tablaPeliculas" border="2">
@@ -96,14 +114,18 @@ and open the template in the editor.
                 <th>IDIOMA</th>
                 <th>PA&Iacute;S</th>
                 <th>
-                    <form action="" method="post">
+                    <form id="formPost" name="insertar" action="" method="post">
 
                         <input type="submit" name="post" value="POST">
 
                     </form>
                 </th>
             </tr>
+        </table>
 
+        <form id="formPut" name="editar" action="#" method="post">
+
+        </form>
 
     </body>
 </html>

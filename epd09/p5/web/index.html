@@ -14,7 +14,7 @@ and open the template in the editor.
         <script type="text/javascript">
             $(document).ready(function () {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8080/p7/webresources/bbdd.pelicula", true);
+                xhttp.open("GET", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula", false);
                 xhttp.setRequestHeader("Accept", "application/xml");
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState === 4 && xhttp.status === 200) {
@@ -23,19 +23,19 @@ and open the template in the editor.
                         var xmlRow = $(rawXML).find('pelicula');
                         // va recorriendo cada una
                         $(xmlRow).each(function () {
-                            var fechaBBDD=$(this).find('fechaEstreno').text();
-                            var date=new Date(fechaBBDD);
-                            var fechaEstreno=date.toLocaleDateString();
-                            
-                            var date2=new Date($(this).find('fechaVideo').text());
-                            var fechaVideo=date2.toLocaleDateString();
-                            
-                            
-                            $('#parrafoPeliculas').append('<label><strong>Nombre: </strong></label>'+$(this).find('nombre').text()+' &nbsp;');
-                            $('#parrafoPeliculas').append('<label><strong>Fecha estreno: </strong></label>'+fechaEstreno+' &nbsp;');
-                            $('#parrafoPeliculas').append('<label><strong>Fecha vídeo : </strong></label>'+fechaVideo+' &nbsp;');
-                            $('#parrafoPeliculas').append('<label><strong>Idioma: </strong></label>'+$(this).find('idioma').text()+' &nbsp;');
-                            $('#parrafoPeliculas').append('<label><strong>País: </strong></label>'+$(this).find('pais').text());
+                            var fechaBBDD = $(this).find('fechaEstreno').text();
+                            var date = new Date(fechaBBDD);
+                            var fechaEstreno = date.toLocaleDateString();
+
+                            var date2 = new Date($(this).find('fechaVideo').text());
+                            var fechaVideo = date2.toLocaleDateString();
+
+
+                            $('#parrafoPeliculas').append('<label><strong>Nombre: </strong></label>' + $(this).find('nombre').text() + ' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Fecha estreno: </strong></label>' + fechaEstreno + ' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Fecha vídeo : </strong></label>' + fechaVideo + ' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>Idioma: </strong></label>' + $(this).find('idioma').text() + ' &nbsp;');
+                            $('#parrafoPeliculas').append('<label><strong>País: </strong></label>' + $(this).find('pais').text());
                             $('#parrafoPeliculas').append('<br/>');
                             $('#tablaPeliculas').append('<tr>'
                                     + '<td>' + $(this).find('id').text() + '</td>'
@@ -45,13 +45,7 @@ and open the template in the editor.
                                     + '<td>' + $(this).find('idioma').text() + '</td>'
                                     + '<td>' + $(this).find('pais').text() + '</td>' + '</tr>');
                         });
-//            var data = eval(xhttp.responseText);
-//            for (var i in data) { 
-//                var row = $("<tr>");
-//                for (var attr in data[i]) {
-//            $(row).append($("<td>").append(data[i][attr])); } 
-//        $("#data").append(row); 
-//        $("#status").text("Datos cargados"); } };
+
                     }
 
                 };
@@ -60,7 +54,7 @@ and open the template in the editor.
         </script>
 
     </head>
-    
+
     <body>
         <p>FORMATO TABLA:</p>
         <table id="tablaPeliculas" border="1">
@@ -71,7 +65,7 @@ and open the template in the editor.
                 <th>FECHA V&Iacute;DEO</th>  
                 <th>IDIOMA</th>  
                 <th>PA&Iacute;S</th>  
-               
+
             </tr>
         </table>
         <p>FORMATO P&Aacute;RRAFO:</p>

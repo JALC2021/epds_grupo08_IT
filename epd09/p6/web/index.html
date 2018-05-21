@@ -50,26 +50,29 @@ and open the template in the editor.
                                     + '<td><input type="button" id="id" name="put" value="PUT"/></td>'
                                     + '</tr>');
                         });
-
                         if ($("input[name=delete]").click(function () {
 
                             var id = $(this).parents("tr").find("td").eq(0).text();
-
                             xhttp = new XMLHttpRequest();
                             xhttp.open("DELETE", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/" + id, true);
                             xhttp.send();
+
+                            if(id){
+                                
+                            }
+
                         })) {
                         }
 
                         if ($("input[name=put]").click(function () {
                             $('#formPut').append(
-                                    '<p><label>id: </label><input type="text" id="id" name="idregistro" value="' + $(this).parents("tr").find("td").eq(0).text()+ ' "</p>'
-                                    + '<p><label>Nombre: </label><input type="text" id="nombre" name="nombre" value="' + $(this).parents("tr").find("td").eq(1).text()+ '"/></p>'
-                                    
-                                    + '<p><label>Fecha de estreno: </label><input type="text" id="fechaE" name="fechaE" value="' + $(this).parents("tr").find("td").eq(2).text()+'"/></p>'
-                                    + '<p><label>Fecha de vídeo: </label><input type="text" id="fechaV" name="fechaV" value="'+ $(this).parents("tr").find("td").eq(3).text()+'"/></p>'
-                                    + '<p><label>Idioma: </label> <select name="idioma"></p>'
-                                    + '<option value="'+ $(this).parents("tr").find("td").eq(4).text()+'" id="pbbdd">'+ $(this).parents("tr").find("td").eq(4).text()+'</option>'
+                                    '<p><label>id: </label><input type="text" id="id" name="idregistro" value="' + $(this).parents("tr").find("td").eq(0).text() + ' "</p>'
+                                    + '<p><label>Nombre: </label><input type="text" id="nombre" name="nombre" value="' + $(this).parents("tr").find("td").eq(1).text() + '"/></p>'
+
+                                    + '<p><label>Fecha de estreno: </label><input type="text" id="fechaE" name="fechaE" value="' + $(this).parents("tr").find("td").eq(2).text() + '"/></p>'
+                                    + '<p><label>Fecha de vídeo: </label><input type="text" id="fechaV" name="fechaV" value="' + $(this).parents("tr").find("td").eq(3).text() + '"/></p>'
+                                    + '<p><label>Idioma: </label> <select name="idioma" id="idioma"></p>'
+                                    + '<option value="' + $(this).parents("tr").find("td").eq(4).text() + '" id="ibbdd">' + $(this).parents("tr").find("td").eq(4).text() + '</option>'
                                     + '<option value="Ingles" id="ingles">Ingles</option>'
                                     + '<option value="Chino" id="chino">Chino</option>'
                                     + '<option value="Espa&ntilde;ol" id="espanol">Espa&ntilde;ol</option>'
@@ -77,23 +80,107 @@ and open the template in the editor.
                                     + '<option value="Frances" id="frances">Frances</option>'
                                     + 'option value="Aleman" id="aleman">Aleman</option>'
                                     + ' </select></p>'
-                                    + '<p><label>País: </label><select name="pais"></p>'
-                                    + '<option value="'+ $(this).parents("tr").find("td").eq(5).text()+'" id="pbbdd">'+ $(this).parents("tr").find("td").eq(5).text()+'</option>'
+                                    + '<p><label>País: </label><select name="pais" id="pais"></p>'
+                                    + '<option value="' + $(this).parents("tr").find("td").eq(5).text() + '" id="pbbdd">' + $(this).parents("tr").find("td").eq(5).text() + '</option>'
                                     + ' <option value="España" id="AF">Afganistan</option>'
                                     + '<option value="Alemania" id="AL">Albania</option>'
                                     + '<option value="Portugal" id="DE">Alemania</option>'
                                     + '<option value="Italia" id="AD">Andorra</option>'
 
                                     + '  </select></p>'
-                                    + '<p><input type="submit" name="enviar" value="Editar"/></p>'
+                                    + '<p><input type="submit" name="enviarPut" value="Editar"/></p>'
 
                                     //para recoger-> $(this).find('nombreid de cada campo').text()
                                     );
+                            //comprobación de que recoja bien los valores de los campos al editar
+
+                            if ($("input[name=enviarPut]").click(function () {
+                                var idPut = $(this).parents("tr").find("td").eq(0).text();
+                                xhttp = new XMLHttpRequest();
+                                xhttp.open("PUT", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/" + idPut, true);
+                                xhttp.setRequestHeader("Content-Type", "application/xml");
+                                xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/23</fechaEstreno><fechaVideo>1908/11/15</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
+//                            if ($("input[name=enviar]").click(function () {
+                                //  var hola=$(this).find('nombre').text();
+                                //var hola = $(this).parents("input").find("value").eq().text();
+//                                alert($("input#id").val());
+//                                alert($("input#nombre").val());
+//                                alert($("input#fechaE").val());
+//                                alert($("input#fechaV").val());
+//                                alert($("select#idioma").val());
+//                                alert($("select#pais").val());
+
+                            })) {
+                            }
+
+//                            })) {
+//
+//                            }
+
+                            //Creando el xml desde 0
+//                            var xmlId = "<id>" + "0" + "</id>";
+//                            var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
+//                            var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
+//                            var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
+//                            var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
+//                            var xmlPais = "<pais>" + $("select#pais").val()+ "</pais>";
+//
+//                            var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
+//                            xhttp.send(xmlPelicula);
                         })) {
 
                         }
 
 
+                        if ($("input[name=post]").click(function () {
+                            $('#formPost').append(
+                                    '<p><label>id: </label><input type="text" id="id" name="idregistro" /></p>'
+                                    + '<p><label>Nombre: </label><input type="text" id="nombre" name="nombre" /></p>'
+
+                                    + '<p><label>Fecha de estreno: </label><input type="text" id="fechaE" name="fechaE" /></p>'
+                                    + '<p><label>Fecha de vídeo: </label><input type="text" id="fechaV" name="fechaV" /></p>'
+                                    + '<p><label>Idioma: </label> <select name="idioma" id="idioma"></p>'
+                                    + '<option value="' + $(this).parents("tr").find("td").eq(4).text() + '" id="ibbdd">' + $(this).parents("tr").find("td").eq(4).text() + '</option>'
+                                    + '<option value="Ingles" id="ingles">Ingles</option>'
+                                    + '<option value="Chino" id="chino">Chino</option>'
+                                    + '<option value="Espa&ntilde;ol" id="espanol">Espa&ntilde;ol</option>'
+                                    + '<option value="Ruso" id="ruso">Ruso</option>'
+                                    + '<option value="Frances" id="frances">Frances</option>'
+                                    + 'option value="Aleman" id="aleman">Aleman</option>'
+                                    + ' </select></p>'
+                                    + '<p><label>País: </label><select name="pais" id="pais"></p>'
+                                    + '<option value="' + $(this).parents("tr").find("td").eq(5).text() + '" id="pbbdd">' + $(this).parents("tr").find("td").eq(5).text() + '</option>'
+                                    + ' <option value="España" id="AF">Afganistan</option>'
+                                    + '<option value="Alemania" id="AL">Albania</option>'
+                                    + '<option value="Portugal" id="DE">Alemania</option>'
+                                    + '<option value="Italia" id="AD">Andorra</option>'
+
+                                    + '  </select></p>'
+                                    + '<p><input type="submit" name="enviarPost" value="Insertar"/></p>'
+
+
+                                    );
+                            if ($("input[name=enviarPost]").click(function () {//pruebo poniendo que se inserte cuando se pulsa enviar
+                                xhttp = new XMLHttpRequest();
+                                xhttp.open("POST", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/", true);
+                                xhttp.setRequestHeader("Content-Type", "application/xml");
+                                xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/19</fechaEstreno><fechaVideo>1908/12/19</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
+                                //Creando el xml desde 0
+//                            var xmlId = "<id>" + "0" + "</id>";
+//                            var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
+//                            var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
+//                            var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
+//                            var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
+//                            var xmlPais = "<pais>" + $("select#pais").val() + "</pais>";
+//
+//                            var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
+//                            xhttp.send(xmlPelicula);
+
+                            })) {
+                            }
+
+                        })) {
+                        }
 
                     }
                 };
@@ -116,7 +203,7 @@ and open the template in the editor.
                 <th>
                     <form id="formPost" name="insertar" action="" method="post">
 
-                        <input type="submit" name="post" value="POST">
+                        <input type="button" name="post" value="POST">
 
                     </form>
                 </th>

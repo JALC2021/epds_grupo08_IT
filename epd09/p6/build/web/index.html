@@ -56,9 +56,8 @@ and open the template in the editor.
                             xhttp = new XMLHttpRequest();
                             xhttp.open("DELETE", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/" + id, true);
                             xhttp.send();
+                            if (id) {
 
-                            if(id){
-                                
                             }
 
                         })) {
@@ -99,34 +98,22 @@ and open the template in the editor.
                                 xhttp = new XMLHttpRequest();
                                 xhttp.open("PUT", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/" + idPut, true);
                                 xhttp.setRequestHeader("Content-Type", "application/xml");
-                                xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/23</fechaEstreno><fechaVideo>1908/11/15</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
-//                            if ($("input[name=enviar]").click(function () {
-                                //  var hola=$(this).find('nombre').text();
-                                //var hola = $(this).parents("input").find("value").eq().text();
-//                                alert($("input#id").val());
-//                                alert($("input#nombre").val());
-//                                alert($("input#fechaE").val());
-//                                alert($("input#fechaV").val());
-//                                alert($("select#idioma").val());
-//                                alert($("select#pais").val());
+                                //xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/23</fechaEstreno><fechaVideo>1908/11/15</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
+                                var xmlId = "<id>" + "0" + "</id>";
+                                var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
+                                var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
+                                var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
+                                var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
+                                var xmlPais = "<pais>" + $("select#pais").val() + "</pais>";
+                                var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
+                                xhttp.send(xmlPelicula);
 
-                            })) {
+
+                            })) {//if enviarPut
+
                             }
 
-//                            })) {
-//
-//                            }
 
-                            //Creando el xml desde 0
-//                            var xmlId = "<id>" + "0" + "</id>";
-//                            var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
-//                            var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
-//                            var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
-//                            var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
-//                            var xmlPais = "<pais>" + $("select#pais").val()+ "</pais>";
-//
-//                            var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
-//                            xhttp.send(xmlPelicula);
                         })) {
 
                         }
@@ -150,7 +137,7 @@ and open the template in the editor.
                                     + ' </select></p>'
                                     + '<p><label>País: </label><select name="pais" id="pais"></p>'
                                     + '<option value="' + $(this).parents("tr").find("td").eq(5).text() + '" id="pbbdd">' + $(this).parents("tr").find("td").eq(5).text() + '</option>'
-                                    + ' <option value="España" id="AF">Afganistan</option>'
+                                    + '<option value="España" id="AF">Afganistan</option>'
                                     + '<option value="Alemania" id="AL">Albania</option>'
                                     + '<option value="Portugal" id="DE">Alemania</option>'
                                     + '<option value="Italia" id="AD">Andorra</option>'
@@ -162,20 +149,18 @@ and open the template in the editor.
                                     );
                             if ($("input[name=enviarPost]").click(function () {//pruebo poniendo que se inserte cuando se pulsa enviar
                                 xhttp = new XMLHttpRequest();
-                                xhttp.open("POST", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula/", true);
+                                xhttp.open("POST", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula", true);
                                 xhttp.setRequestHeader("Content-Type", "application/xml");
-                                xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/19</fechaEstreno><fechaVideo>1908/12/19</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
+                                //xhttp.send("<pelicula><id>0</id><nombre>La ola</nombre><fechaEstreno>1900/12/19</fechaEstreno><fechaVideo>1908/12/19</fechaVideo><idioma>chino</idioma><pais>Andorra</pais></pelicula>");
                                 //Creando el xml desde 0
-//                            var xmlId = "<id>" + "0" + "</id>";
-//                            var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
-//                            var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
-//                            var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
-//                            var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
-//                            var xmlPais = "<pais>" + $("select#pais").val() + "</pais>";
-//
-//                            var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
-//                            xhttp.send(xmlPelicula);
-
+                                var xmlId = "<id>" + "0" + "</id>";
+                                var xmlNombre = "<nombre>" + $("input#nombre").val() + "</nombre>";
+                                var xmlFechaEstreno = "<fechaEstreno>" + $("input#fechaE").val() + "</fechaEstreno>";
+                                var xmlFechaVideo = "<fechaVideo>" + $("input#fechaV").val() + "</fechaVideo>";
+                                var xmlIdioma = "<idioma>" + $("select#idioma").val() + "</idioma>";
+                                var xmlPais = "<pais>" + $("select#pais").val() + "</pais>";
+                                var xmlPelicula = "<pelicula>" + xmlId + xmlNombre + xmlFechaEstreno + xmlFechaVideo + xmlIdioma + xmlPais + "</pelicula>";
+                                xhttp.send(xmlPelicula);
                             })) {
                             }
 
@@ -201,7 +186,7 @@ and open the template in the editor.
                 <th>IDIOMA</th>
                 <th>PA&Iacute;S</th>
                 <th>
-                    <form id="formPost" name="insertar" action="" method="post">
+                    <form id="form" name="insertar" action="#" method="post">
 
                         <input type="button" name="post" value="POST">
 
@@ -209,6 +194,10 @@ and open the template in the editor.
                 </th>
             </tr>
         </table>
+
+        <form id="formPost" name="insert" action="#" method="post">
+
+        </form>
 
         <form id="formPut" name="editar" action="#" method="post">
 

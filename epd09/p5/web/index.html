@@ -14,7 +14,7 @@ and open the template in the editor.
         <script type="text/javascript">
             $(document).ready(function () {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula", false);
+                xhttp.open("GET", "http://localhost:8080/p7_epd08/webresources/bbdd.pelicula", true);
                 xhttp.setRequestHeader("Accept", "application/xml");
                 xhttp.onreadystatechange = function () {
                     if (xhttp.readyState === 4 && xhttp.status === 200) {

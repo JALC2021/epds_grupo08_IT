@@ -12,6 +12,31 @@
 <%@page import="javax.ws.rs.client.ClientResponseContext"%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%
+            if (request.getParameter("editPelicula") != null) {
+
+                String idString = request.getParameter("idEdit");
+
+                Integer id = Integer.valueOf(idString);
+
+                String nombre = request.getParameter("nombre");
+
+                String fEstreno = request.getParameter("fechaEstreno");
+                String fVideo = request.getParameter("fechaVideo");
+
+                Date fechaEstreno = java.sql.Date.valueOf(fEstreno);
+                Date fechaVideo = java.sql.Date.valueOf(fVideo);
+
+                String idioma = request.getParameter("idioma");
+                String pais = request.getParameter("pais");
+
+                Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
+                NewJerseyClientPelicula jpEdit = new NewJerseyClientPelicula();
+                jpEdit.edit_XML(p, idString);
+                response.sendRedirect("index.jsp");
+
+            }
+        %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -296,31 +321,7 @@
             <input type="submit" name="editPelicula" value="Editar Pelicula">
         </form>
 
-        <%
-            if (request.getParameter("editPelicula") != null) {
-
-                String idString = request.getParameter("idEdit");
-
-                Integer id = Integer.valueOf(idString);
-
-                String nombre = request.getParameter("nombre");
-
-                String fEstreno = request.getParameter("fechaEstreno");
-                String fVideo = request.getParameter("fechaVideo");
-
-                Date fechaEstreno = java.sql.Date.valueOf(fEstreno);
-                Date fechaVideo = java.sql.Date.valueOf(fVideo);
-
-                String idioma = request.getParameter("idioma");
-                String pais = request.getParameter("pais");
-
-                Pelicula p = new Pelicula(id, nombre, fechaEstreno, fechaVideo, idioma, pais);
-                NewJerseyClientPelicula jpEdit = new NewJerseyClientPelicula();
-                jpEdit.edit_XML(p, idString);
-                response.sendRedirect("index.jsp");
-
-            }
-        %>
+    
 
     </body>
 </html>
